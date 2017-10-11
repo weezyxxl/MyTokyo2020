@@ -70,6 +70,6 @@ local a medida que se desplacen por la ciudad, un sistema de traducción básico
 
 
 ## Contribuciones
- @weezyxxl
+ [@weezyxxl](https://github.com/weezyxxl)
  
- @AnSoRu
+ [@AnSoRu](https://github.com/AnSoRu)
