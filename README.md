@@ -42,10 +42,10 @@ local a medida que se desplacen por la ciudad, un sistema de traducción básico
  - El usuario podrá consultar los horarios de las diferentes competiciones.
  - El usuario podrá consultar información y reglas de las disciplinas (escrita o en vídeo explicativa)
  - El usuario podrá registrarse o no en el sistema:
-  - Si el usuario se registra podrá suscribirse a los eventos que desee y recibirá notificaciones de los mismos, incluir opiniones de los resultados, y ver las opiniones de los demás usuarios.
-  - El usuario podrá darse de baja de los eventos en cualquier momento.
-  - El usuario podrá comprar entradas para el evento que desee, ver el estado de su compra y podrá cancelar su compra.
-  - Si el usuario no se registra no recibirá notificaciones de los eventos, ni tampoco podrá acceder a las opiniones de otros usuarios, pero podrá acceder a la información general de los eventos.
+    - Si el usuario se registra podrá suscribirse a los eventos que desee y recibirá notificaciones de los mismos, incluir opiniones de los resultados, y ver las opiniones de los demás usuarios.
+      - El usuario podrá darse de baja de los eventos en cualquier momento.
+      - El usuario podrá comprar entradas para el evento que desee, ver el estado de su compra y podrá cancelar su compra.
+    - Si el usuario no se registra no recibirá notificaciones de los eventos, ni tampoco podrá acceder a las opiniones de otros usuarios, pero podrá acceder a la información general de los eventos.
 
 
 ### Funcionalidades secundarias
@@ -60,6 +60,16 @@ local a medida que se desplacen por la ciudad, un sistema de traducción básico
 
 ## Tecnologías a utilizar
 
+ - Android Studio
+ - Sensor de localización y posicionamiento (GPS)
+ - Servidor externo de base de datos (MongoDB)
+ - Servidor externo para alojar funciones de llamada a la bbdd (Tomcat)
+ - Servicio de autenticación de Google y Facebook (Single Sign On ó OAuth 2.0)(sin determinar)
+ - Broker de mensajes push (posiblemente Firebase)
+ - Google Maps API
+
+
 ## Contribuciones
  @weezyxxl
+ 
  @AnSoRu
