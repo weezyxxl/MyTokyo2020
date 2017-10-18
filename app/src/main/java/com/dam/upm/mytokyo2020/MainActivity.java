@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //TEST
-        ImageView im1 = (ImageView)findViewById(R.id.imageView12);
+        final ImageView im1 = (ImageView)findViewById(R.id.imageView12);
         im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast toast = Toast.makeText(getApplicationContext(),"Has apretado " + im1.getId(),Toast.LENGTH_LONG);
+                toast.show();
             }
         });
     }
