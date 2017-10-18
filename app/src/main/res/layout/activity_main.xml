@@ -1,247 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-     <ScrollView android:layout_height="match_parent"
-         android:layout_width="match_parent"
-         xmlns:android="http://schemas.android.com/apk/res/android">
 
-          <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-         xmlns:app="http://schemas.android.com/apk/res-auto"
-         xmlns:tools="http://schemas.android.com/tools"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         tools:context="com.dam.upm.mytokyo2020.MainActivity"
-         android:columnCount="4">
+   <HorizontalScrollView
+       android:layout_width="match_parent"
+       android:layout_height="200dp">
 
-             <ImageButton
-                 android:id="@+id/archery"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/archery" />
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
 
-             <ImageButton
-                 android:id="@+id/athletics"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/atletics" />
+         <ImageView
+             android:id="@+id/imageView13"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             app:srcCompat="@mipmap/ic_launcher_archery" />
 
-             <ImageButton
-                 android:id="@+id/basket"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/basket" />
+         <ImageView
+             android:id="@+id/imageView12"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             app:srcCompat="@mipmap/ic_launcher_atletics" />
 
-             <ImageButton
-                 android:id="@+id/beach_volley"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/beach_volley" />
+         <ImageView
+             android:id="@+id/imageView14"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             app:srcCompat="@mipmap/ic_launcher_basket" />
 
-             <ImageButton
-                 android:id="@+id/bmx"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/bmx" />
+         <ImageView
+             android:id="@+id/imageView15"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             app:srcCompat="@mipmap/ic_launcher_beachvolley" />
+      </LinearLayout>
 
-             <ImageButton
-                 android:id="@+id/boxing"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/boxing" />
 
-             <ImageButton
-                 android:id="@+id/diving"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/diving" />
+   </HorizontalScrollView>
 
-             <ImageButton
-                 android:id="@+id/eq_dressage"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/equestrian_dressage" />
-
-             <ImageButton
-                 android:id="@+id/eq_eventing"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/equestrian_eventing" />
-
-             <ImageButton
-                 android:id="@+id/eq_jumping"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/equestrian_jumping" />
-
-             <ImageButton
-                 android:id="@+id/fencing"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/fencing" />
-
-             <ImageButton
-                 android:id="@+id/golf"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/golf" />
-
-             <ImageButton
-                 android:id="@+id/gym_artistics"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/gymnastics_artistics" />
-
-             <ImageButton
-                 android:id="@+id/gym_rhytmic"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/gymnastics_rhythmic" />
-
-             <ImageButton
-                 android:id="@+id/handball"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/handball" />
-
-             <ImageButton
-                 android:id="@+id/hockey"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/hockey" />
-
-             <ImageButton
-                 android:id="@+id/judo"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/judo" />
-
-             <ImageButton
-                 android:id="@+id/kayak"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/kayak" />
-
-             <ImageButton
-                 android:id="@+id/kayak_slalom"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/kayak_slalom" />
-
-             <ImageButton
-                 android:id="@+id/marathon_swim"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/marathon_swim" />
-
-             <ImageButton
-                 android:id="@+id/mountain_bike"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/mountain_bike" />
-
-             <ImageButton
-                 android:id="@+id/pentathlon"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/pentathlon" />
-
-             <ImageButton
-                 android:id="@+id/road_cycling"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/road_cycling" />
-
-             <ImageButton
-                 android:id="@+id/rowing"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/rowing" />
-
-             <ImageButton
-                 android:id="@+id/rugby"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/rugby" />
-
-             <ImageButton
-                 android:id="@+id/sailing"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/sailling" />
-
-             <ImageButton
-                 android:id="@+id/shooting"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/shooting" />
-
-             <ImageButton
-                 android:id="@+id/soccer"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/soccer" />
-
-             <ImageButton
-                 android:id="@+id/sync_swim"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/synchronized_swimming" />
-
-             <ImageButton
-                 android:id="@+id/table_tennis"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/table_tennis" />
-
-             <ImageButton
-                 android:id="@+id/taekwondo"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/taekwondo" />
-
-             <ImageButton
-                 android:id="@+id/tennis"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/tennis" />
-
-             <ImageButton
-                 android:id="@+id/track_cycling"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/track_cycling" />
-
-             <ImageButton
-                 android:id="@+id/trampline"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/trampline" />
-
-             <ImageButton
-                 android:id="@+id/triathlon"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/triathlon" />
-
-             <ImageButton
-                 android:id="@+id/volleyball"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/volleyball" />
-
-             <ImageButton
-                 android:id="@+id/water_polo"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/water_polo" />
-
-             <ImageButton
-                 android:id="@+id/weightlifting"
-                 android:layout_width="96dp"
-                 android:layout_height="116dp"
-                 app:srcCompat="@drawable/weightlifting" />
-         </GridLayout>
-     </ScrollView>
 </LinearLayout>
