@@ -3,29 +3,28 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_myTokyo2020"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="MyTokyo2020" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/settings"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Settings" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/cityTokyo"
+            android:checkable="false"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Visit Tokyo" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Others">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/about"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="About" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
