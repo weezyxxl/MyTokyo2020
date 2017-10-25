@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,9 +16,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+
+    private ViewFlipper flipper;
+    private float lastX;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,65 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        flipper = (ViewFlipper) findViewById(R.id.flipper);
+        GridView gridview_1 = (GridView) findViewById(R.id.gridView_1);
+        gridview_1.setAdapter(new ImageAdapter(this,1));
+
+        gridview_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+            }
+        });
+        GridView gridview_2 = (GridView) findViewById(R.id.gridView_2);
+        gridview_2.setAdapter(new ImageAdapter(this,2));
+
+        gridview_2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+            }
+        });
+        GridView gridview_3 = (GridView) findViewById(R.id.gridView_3);
+        gridview_3.setAdapter(new ImageAdapter(this,3));
+
+        gridview_3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                lastX = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                float currentX = event.getX();
+                if(lastX < currentX){
+                    if(flipper.getDisplayedChild() == 0){
+                        break;
+                    }
+                    flipper.setInAnimation(this,R.anim.slide_in_from_left);
+                    flipper.setOutAnimation(this,R.anim.slide_out_to_right);
+                    flipper.showNext();
+                }
+                if(lastX > currentX){
+                    if(flipper.getDisplayedChild() == 1){
+                        break;
+                    }
+                    flipper.setInAnimation(this,R.anim.slide_in_from_right);
+                    flipper.setOutAnimation(this,R.anim.slide_out_to_left);
+                    flipper.showPrevious();
+                }
+
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -88,6 +157,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.settings) {
+            Intent i = new Intent(this,SettingsActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.cityTokyo) {
 
