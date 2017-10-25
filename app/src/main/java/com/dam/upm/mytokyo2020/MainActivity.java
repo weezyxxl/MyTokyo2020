@@ -55,34 +55,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         flipper = (ViewFlipper) findViewById(R.id.flipper);
-        GridView gridview_1 = (GridView) findViewById(R.id.gridView_1);
-        gridview_1.setAdapter(new ImageAdapter(this,1));
-
-        gridview_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-            }
-        });
-        GridView gridview_2 = (GridView) findViewById(R.id.gridView_2);
-        gridview_2.setAdapter(new ImageAdapter(this,2));
-
-        gridview_2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-            }
-        });
-        GridView gridview_3 = (GridView) findViewById(R.id.gridView_3);
-        gridview_3.setAdapter(new ImageAdapter(this,3));
-
-        gridview_3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-            }
-        });
-
     }
 
     @Override
