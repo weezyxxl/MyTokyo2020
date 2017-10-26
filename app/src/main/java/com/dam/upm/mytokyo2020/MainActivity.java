@@ -1,5 +1,6 @@
 package com.dam.upm.mytokyo2020;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,25 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         flipper = (ViewFlipper) findViewById(R.id.flipper);
-
+        flipper.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_UP:
+                        Toast toast = Toast.makeText(getApplicationContext(),"ActionUP",Toast.LENGTH_SHORT);
+                        toast.show();
+                        flipper.setInAnimation(getApplicationContext(),R.anim.slide_in_from_left);
+                        flipper.setOutAnimation(getApplicationContext(),R.anim.slide_out_to_right);
+                        flipper.showNext();
+                        break;
+                    case MotionEvent.ACTION_DOWN:
+                        Toast toast2 = Toast.makeText(getApplicationContext(),"ActionDown",Toast.LENGTH_SHORT);
+                        toast2.show();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override

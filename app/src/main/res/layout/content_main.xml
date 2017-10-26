@@ -15,7 +15,7 @@
     <ViewFlipper
         android:id="@+id/flipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -256,7 +256,10 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:columnCount="1"
+            android:rowCount="4">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -283,6 +286,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_handball_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,6 +316,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -338,6 +343,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_kayak_slalom_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -367,6 +373,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,6 +400,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_mountain_bike_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -422,6 +430,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -448,6 +457,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_rowing_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -481,7 +491,10 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:columnCount="1"
+            android:rowCount="4">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -508,6 +521,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_shooting_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -537,6 +551,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -563,6 +578,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_table_tennis_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -592,6 +608,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -618,6 +635,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_tr_cycling_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -647,6 +665,7 @@
                     android:text="TextView"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -673,6 +692,7 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_launcher_waterpollo_web" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
