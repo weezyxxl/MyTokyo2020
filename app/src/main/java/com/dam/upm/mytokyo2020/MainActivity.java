@@ -65,24 +65,56 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()){
-                    case MotionEvent.ACTION_UP:
-                        Toast toast = Toast.makeText(getApplicationContext(),"ActionUP",Toast.LENGTH_SHORT);
+                    case MotionEvent.ACTION_DOWN: //Que hacer cuando el usuario presiona la pantalla
+                        lastX = motionEvent.getX();
+                        Toast toast = Toast.makeText(getApplicationContext(),"ActionDown",Toast.LENGTH_SHORT);
                         toast.show();
-                        flipper.setInAnimation(getApplicationContext(),R.anim.slide_in_from_left);
-                        flipper.setOutAnimation(getApplicationContext(),R.anim.slide_out_to_right);
-                        flipper.showNext();
+                        float currentX = motionEvent.getX();
+                        if(lastX < currentX){
+                            if(flipper.getDisplayedChild() == 0){
+                                break;
+                            }
+                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_left);
+                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_right);
+                            flipper.showNext();
+                        }
+                        if(lastX > currentX){
+                            if(flipper.getDisplayedChild() == 1){
+                                break;
+                            }
+                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_right);
+                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_left);
+                            flipper.showPrevious();
+                        }
                         break;
-                    case MotionEvent.ACTION_DOWN:
-                        Toast toast2 = Toast.makeText(getApplicationContext(),"ActionDown",Toast.LENGTH_SHORT);
+                    case MotionEvent.ACTION_UP: //Que hacer cuando el usuario deja de presionar
+                        Toast toast2 = Toast.makeText(getApplicationContext(),"ActionUp",Toast.LENGTH_SHORT);
                         toast2.show();
+                        /*float currentX = motionEvent.getX();
+                        if(lastX < currentX){
+                            if(flipper.getDisplayedChild() == 0){
+                                break;
+                            }
+                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_left);
+                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_right);
+                            flipper.showNext();
+                        }
+                        if(lastX > currentX){
+                            if(flipper.getDisplayedChild() == 1){
+                                break;
+                            }
+                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_right);
+                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_left);
+                            flipper.showPrevious();
+                        }*/
                         break;
                 }
-                return true;
+                return MainActivity.super.onTouchEvent(motionEvent);
             }
         });
     }
 
-    @Override
+    /*@Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -109,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         return super.onTouchEvent(event);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
