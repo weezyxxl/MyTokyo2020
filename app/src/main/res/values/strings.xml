@@ -89,4 +89,44 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+
+    <string-array name="Disciplinas">
+        <item>Archery</item>
+        <item>Atletics</item>
+        <item>Basketball</item>
+        <item>Beach Volley</item>
+        <item>BMX</item>
+        <item>Boxing</item>
+        <item>Diving</item>
+        <item>Equestrian Dressage</item>
+        <item>Equestrian Eventing</item>
+        <item>Equestrian Jumping</item>
+        <item>Fencing</item>
+        <item>Golf</item>
+        <item>Gymnastics Artistics</item>
+        <item>Gymnastics Rythmics</item>
+        <item>Handball</item>
+        <item>Hockey</item>
+        <item>Judo</item>
+        <item>Kayak Slalom</item>
+        <item>Kayak Sprint</item>
+        <item>Marathon Swim</item>
+        <item>Mountain Bike</item>
+        <item>Pentathlon</item>
+        <item>Road Cycling</item>
+        <item>Rowing</item>
+        <item>Rugby</item>
+        <item>Sailing</item>
+        <item>Shooting</item>
+        <item>Soccer</item>
+        <item>Synchronized Swimming</item>
+        <item>Table Tennis</item>
+        <item>Taekwondo</item>
+        <item>Tennis</item>
+        <item>Track Cycling</item>
+        <item>Trampline</item>
+        <item>Volleyball</item>
+        <item>Water Polo</item>
+        <item>Weightlifting</item>
+    </string-array>
 </resources>
