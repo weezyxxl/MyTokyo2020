@@ -62,7 +62,7 @@ local a medida que se desplacen por la ciudad, un sistema de traducción básico
 
  - Android Studio
  - Sensor de localización y posicionamiento (GPS)
- - Servidor externo de base de datos (MongoDB)
+ - Servidor externo de base de datos (MySQL)
  - Servidor externo para alojar funciones de llamada a la bbdd (Tomcat)
  - Servicio de autenticación de Google y Facebook (Single Sign On ó OAuth 2.0)(sin determinar)
  - Broker de mensajes push (posiblemente Firebase)
