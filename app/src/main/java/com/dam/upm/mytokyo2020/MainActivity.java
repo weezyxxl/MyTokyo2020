@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -99,7 +100,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
         flipper.performClick();
-        String [] disciplinas = getResources().getStringArray(R.array.Disciplinas);
+       // String [] disciplinas = getResources().getStringArray(R.array.Disciplinas);
+        ImageView archery = (ImageView)findViewById(R.id.imageView2);
+        archery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(),"TocadoArchery",Toast.LENGTH_LONG);
+                toast.show();
+                Intent mainIntent = new Intent(MainActivity.this,Disciplina.class);
+                mainIntent.putExtra("nombre","Archery");
+                startActivity(mainIntent);
+                finish();
+            }
+        });
     }
 
 

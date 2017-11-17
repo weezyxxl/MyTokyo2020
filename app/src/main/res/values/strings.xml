@@ -129,4 +129,11 @@
         <item>Water Polo</item>
         <item>Weightlifting</item>
     </string-array>
+    <string name="title_activity_disciplina">Disciplina</string>
+    <string name="Eventos">Eventos</string>
+    <string name="Atletas">Atletas</string>
+    <string name="Noticias">Noticias</string>
+    <string name="Resultados">Resultados</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
 </resources>
