@@ -89,7 +89,7 @@ public class LoginActivity extends  AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
+        // TODO: Implement your own authentication logic
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
