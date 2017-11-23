@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -34,35 +35,72 @@ public class Loading extends AppCompatActivity {
     private class CheckConnectivity extends AsyncTask<URL,Integer,JSONObject>{
 
         protected JSONObject doInBackground(URL... urls){
-            String urlRequest = "http://localhost:8080/MyTokyo2020Server/CheckConnectivity";
-            InputStream stream = null;
-            JSONObject result = null;
+            boolean msgOk = false;
+            boolean tipoOk = false;
             try {
-                URL url = new URL(urlRequest);
+                URL url = new URL("http://10.0.2.2:8080/MyTokyo2020Server/CheckConnectivity");
                 URLConnection connection = url.openConnection();
-                HttpURLConnection httpConnection = (HttpURLConnection)connection;
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
-                stream = httpConnection.getInputStream();
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(stream));
-                String aux = "";
-                while((aux = buffer.readLine())!=null){
-                    result = new JSONObject().getJSONObject(aux);
+                connection.setDoOutput(false);
+                connection.setDoInput(true);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String response = br.readLine();
+                String msg = "";
+                String tipo = "";
+                while(response != null){
+                    JSONObject json = new JSONObject(response);
+                    msg = json.getString("msg");
+                    tipo = json.getString("tipo");
+                    response = br.readLine();
                 }
-            } catch (java.io.IOException e) {
+                System.out.println("#######################################");
+                System.out.println(msg);
+                System.out.println(tipo);
+                if(msg != "" && msg.equals("connected")) {
+                    msgOk = true;
+                }
+                if(tipo != "" && tipo.equals("ok")){
+                    tipoOk = true;
+                }
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            JSONObject jRespuesta = new JSONObject();
+            try {
+                if(msgOk && tipoOk) {
+                    jRespuesta.put("res", "ok");
+                }else{
+                    jRespuesta.put("res","fail");
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return result;
+            return jRespuesta;
         }
 
         protected void onPostExecute(JSONObject result){
             if(result != null) {
-                Toast t = Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_LONG);
-                t.show();
+                try {
+                    String resS = result.getString("res");
+                    if(resS!=null){
+                        if(resS.equals("ok")){
+                            Toast t = Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_LONG);
+                            t.show();
+                        }if(resS.equals("fail")){
+                            Toast t = Toast.makeText(getApplicationContext(), "Fallo al Conectar", Toast.LENGTH_LONG);
+                            t.show();
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }else{
-                Toast t = Toast.makeText(getApplicationContext(), "Fallo", Toast.LENGTH_LONG);
+                Toast t = Toast.makeText(getApplicationContext(), "Fallo JSONObject", Toast.LENGTH_LONG);
                 t.show();
             }
         }
