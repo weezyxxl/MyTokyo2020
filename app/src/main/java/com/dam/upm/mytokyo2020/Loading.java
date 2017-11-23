@@ -53,9 +53,6 @@ public class Loading extends AppCompatActivity {
                     tipo = json.getString("tipo");
                     response = br.readLine();
                 }
-                System.out.println("#######################################");
-                System.out.println(msg);
-                System.out.println(tipo);
                 if(msg != "" && msg.equals("connected")) {
                     msgOk = true;
                 }
@@ -104,7 +101,6 @@ public class Loading extends AppCompatActivity {
                 t.show();
             }
         }
-
     }
 
     private ProgressBar spinner;
@@ -126,6 +122,5 @@ public class Loading extends AppCompatActivity {
                 finish();
             }
         },WAIT_TIME);
-
     }
 }
