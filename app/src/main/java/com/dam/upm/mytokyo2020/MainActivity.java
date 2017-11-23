@@ -190,8 +190,8 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this,TabActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.settings) {
-            Intent i = new Intent(this,SettingsActivity.class);
+        } else if (id == R.id.medal_table) {
+            Intent i = new Intent(this,MedalTableActivity.class);
             startActivity(i);
 
         } else if (id == R.id.cityTokyo) {

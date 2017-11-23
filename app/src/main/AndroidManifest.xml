@@ -37,7 +37,10 @@
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Disciplina" />
-        <activity android:name=".MedalTableActivity"></activity>
+        <activity android:name=".MedalTableActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

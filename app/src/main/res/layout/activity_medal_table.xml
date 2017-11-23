@@ -103,7 +103,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Spain"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:drawableLeft="@mipmap/ic_spain"
+            />
 
         <TextView
             android:id="@+id/Oro1"
@@ -173,7 +175,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="China"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:drawableLeft="@mipmap/ic_china"
+            />
 
         <TextView
             android:id="@+id/Oro3"
@@ -243,7 +247,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Italy"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:drawableLeft="@mipmap/ic_italy"
+            />
 
         <TextView
             android:id="@+id/Oro4"
@@ -312,7 +318,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Japan"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:drawableLeft="@mipmap/ic_japan"
+            />
 
         <TextView
             android:id="@+id/Oro5"
