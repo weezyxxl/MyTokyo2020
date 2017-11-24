@@ -1,7 +1,6 @@
 package com.dam.upm.mytokyo2020;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,8 +9,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -29,29 +32,51 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+     {
 
 
     private ViewFlipper flipper;
     private float lastX;
+    private DrawerLayout drawerLayout;
 
 
+    private void agregarToolbar() {
+             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+             setSupportActionBar(toolbar);
+             final ActionBar ab = getSupportActionBar();
+             if (ab != null) {
+                 // Poner ícono del drawer toggle
+                 ab.setHomeAsUpIndicator(R.drawable.drawer_toggle);
+                 ab.setDisplayHomeAsUpEnabled(true);
+             }
+
+         }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        agregarToolbar();
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        if (navigationView != null) {
+            prepararDrawer(navigationView);
+            // Seleccionar item por defecto
+            seleccionarItem(navigationView.getMenu().getItem(0));
+        }
+
+
+
+
+        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         BottomNavigationView bNav = (BottomNavigationView) findViewById(R.id.navigation);
@@ -64,8 +89,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        flipper = (ViewFlipper) findViewById(R.id.flipper);
-        flipper.setOnTouchListener(new View.OnTouchListener() {
+     flipper.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()){
@@ -119,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    /*@Override
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
@@ -146,9 +170,63 @@ public class MainActivity extends AppCompatActivity
 
         }
         return super.onTouchEvent(event);
-    }*/
+    }
+    */
+    }
 
-    @Override
+    private void prepararDrawer(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        seleccionarItem(menuItem);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
+
+    }
+    private void seleccionarItem(MenuItem itemDrawer) {
+        Fragment fragmentoGenerico = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        switch (itemDrawer.getItemId()) {
+            case R.id.item_inicio:
+                fragmentoGenerico = new Fragmento_inicio();
+                break;
+            case R.id.My_profile:
+                // Fragmento para la sección Cuenta
+                if(LoginActivity.dentro==true){
+                    Intent i = new Intent(this,ProfileActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    Intent i = new Intent(this,LoginActivity.class);
+                    startActivity(i);
+                }
+                break;
+            case R.id.medal_table:
+                // Fragmento para la sección Categorías
+                Intent m = new Intent(this,MedalTableActivity.class);
+
+                startActivity(m);
+                break;
+            case R.id.Resultados:
+                // Iniciar actividad de configuración
+                break;
+        }
+        if (fragmentoGenerico != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.app_bar_main, fragmentoGenerico)
+                    .commit();
+        }
+
+        // Setear título actual
+        setTitle(itemDrawer.getTitle());
+    }
+   /* @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -156,7 +234,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,19 +248,31 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    /*int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        return super.onOptionsItemSelected(item);*/
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+
+   /* @SuppressWarnings("StatementWithEmptyBody")
+    @Override*/
+    /*public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -202,6 +292,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 
 }

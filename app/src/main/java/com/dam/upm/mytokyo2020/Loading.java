@@ -117,7 +117,7 @@ public class Loading extends AppCompatActivity {
             @Override
             public void run() {
                 new CheckConnectivity().execute();
-                Intent mainIntent = new Intent(Loading.this,LoginActivity.class);
+                Intent mainIntent = new Intent(Loading.this,MainActivity.class);
                 startActivity(mainIntent);
                 finish();
             }

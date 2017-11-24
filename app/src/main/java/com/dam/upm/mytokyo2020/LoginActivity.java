@@ -27,6 +27,7 @@ import butterknife.InjectView;
 public class LoginActivity extends  AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    public static boolean dentro = false;
 
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
@@ -81,7 +82,7 @@ public class LoginActivity extends  AppCompatActivity {
         _loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme);
+                R.style.Base_AppTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
@@ -112,6 +113,9 @@ public class LoginActivity extends  AppCompatActivity {
                 // By default we just finish the Activity and log them in automatically
                // this.finish();
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                //i.putExtra("dentro",true);
+                dentro=true;
+                System.out.println("dentro = " + dentro);
                 startActivity(i);
             }
         }
@@ -126,6 +130,8 @@ public class LoginActivity extends  AppCompatActivity {
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         Intent i = new Intent(getApplicationContext(),MainActivity.class);
+        dentro=true;
+        System.out.println("dentro = " + dentro);
         startActivity(i);
         //finish();
     }
