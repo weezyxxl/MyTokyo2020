@@ -41,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
                 row1.addView(ev1);
                 row1.addView(hora1);
                 row1.addView(lugar1);
+                row1.setPadding(0,25,0,0);
 
                 TextView ev2 = new TextView(this);
                 ev2.setText("Evento 2");
@@ -57,6 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
                 row2.addView(ev2);
                 row2.addView(hora2);
                 row2.addView(lugar2);
+                row2.setPadding(0,25,0,0);
                 table.addView(row1,i);
                 table.addView(row2,i+1);
                 break;
