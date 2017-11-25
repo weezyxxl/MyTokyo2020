@@ -136,4 +136,12 @@
     <string name="Resultados">Resultados</string>
     <string name="Male">Male</string>
     <string name="Female">Female</string>
+    <string name="NombreFoto">Nombre</string>
+    <string name="Puntos">Puntos</string>
+    <string name="PastEvents">Past Events</string>
+    <string name="deleteAccount">Delete Account</string>
+    <string name="descriptionFoto">Descripcion</string>
+    <string name="tipo">Tipo</string>
+    <string name="hora">Hora</string>
+    <string name="lugar">Lugar</string>
 </resources>
