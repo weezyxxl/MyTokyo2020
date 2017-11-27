@@ -2,33 +2,18 @@ package com.dam.upm.mytokyo2020;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.view.MotionEvent;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
@@ -131,7 +116,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Toast toast = Toast.makeText(getApplicationContext(),"TocadoArchery",Toast.LENGTH_LONG);
                 toast.show();
-                Intent mainIntent = new Intent(MainActivity.this,Disciplina.class);
+                Intent mainIntent = new Intent(MainActivity.this,Fragmento_Disciplina.class);
                 mainIntent.putExtra("nombre","Archery");
                 startActivity(mainIntent);
                 finish();
@@ -193,7 +178,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (itemDrawer.getItemId()) {
             case R.id.item_inicio:
-                fragmentoGenerico = new Fragmento_inicio();
+                fragmentoGenerico = new Fragmento_Noticias();
                 break;
             case R.id.My_profile:
                 // Fragmento para la sección Cuenta
@@ -208,12 +193,15 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.medal_table:
                 // Fragmento para la sección Categorías
-                Intent m = new Intent(this,MedalTableActivity.class);
+                /*Intent m = new Intent(this,MedalTableActivity.class);
 
-                startActivity(m);
+                startActivity(m);*/
+                fragmentoGenerico = new MedalTableActivity();
+
                 break;
-            case R.id.Resultados:
-                // Iniciar actividad de configuración
+            case R.id.sports:
+                fragmentoGenerico = new Fragmento_Sports();
+
                 break;
         }
         if (fragmentoGenerico != null) {

@@ -3,19 +3,21 @@
     android:id="@+id/Tabla"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1" >
+    android:stretchColumns="1"
+    >
 
     <!-- Cabecera -->
     <TableRow
         android:id="@+id/Cabecera"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#6bbee7">
+        android:background="#006597">
 
         <TextView
             android:id="@+id/ColumnaRank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="2px"
             android:text="Rank"
             android:textColor="#ffffff"
@@ -25,44 +27,57 @@
             android:id="@+id/ColumnaCountry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:padding="2px"
             android:text="Country"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            />
 
-        <TextView
+        <ImageView
             android:id="@+id/ColumnaOro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:padding="2px"
+            android:layout_gravity="center"
+            android:padding="3px"
             android:text="Oro"
+            android:src="@drawable/gold_medal"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
 
-        <TextView
+            />
+
+        <ImageView
             android:id="@+id/ColumnaPlata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2px"
+            android:layout_gravity="center"
+            android:padding="3px"
             android:text="Plata"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:src="@drawable/silver_medal"
+            android:textSize="16sp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/ColumnaBronce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2px"
+            android:layout_gravity="center"
+            android:padding="3px"
             android:text="Bronce"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:src="@drawable/bronze_medal"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/ColumnaTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="2px"
             android:text="Total"
             android:textColor="#ffffff"
@@ -101,10 +116,12 @@
             android:id="@+id/Country1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Spain"
             android:textSize="20sp"
-            android:drawableLeft="@mipmap/ic_spain"
+            android:drawableLeft="@drawable/spain"
+            android:drawablePadding="42dp"
+
             />
 
         <TextView
@@ -173,10 +190,12 @@
             android:id="@+id/Country3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="China"
             android:textSize="20sp"
-            android:drawableLeft="@mipmap/ic_china"
+            android:drawableLeft="@drawable/china"
+            android:drawablePadding="42dp"
+
             />
 
         <TextView
@@ -245,10 +264,11 @@
             android:id="@+id/Country4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Italy"
             android:textSize="20sp"
-            android:drawableLeft="@mipmap/ic_italy"
+            android:drawableLeft="@drawable/italy"
+            android:drawablePadding="42dp"
             />
 
         <TextView
@@ -316,10 +336,11 @@
             android:id="@+id/Country5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:text="Japan"
             android:textSize="20sp"
-            android:drawableLeft="@mipmap/ic_japan"
+            android:drawableLeft="@drawable/japan"
+            android:drawablePadding="42dp"
             />
 
         <TextView

@@ -20,9 +20,9 @@ import java.util.Date;
 public class Fragmento_inicio extends Fragment {
     ListView listView;
     //String[] elementos = {"jose", "pedro", "maria", "miguel", "luis", "daniel", "elena", "Laura", "Sofia"};
-    String[] noticias = {new Noticia(new Date(),"Noticia 1",R.mipmap.foto1).toString(),
-                        new Noticia(new Date(),"Noticia 2",R.mipmap.foto1).toString(),
-                        new Noticia(new Date(),"Noticia 3",R.mipmap.foto1).toString()};
+    String[] noticias = {new Noticia(0,"26 NOV 2017","Noticia 1",R.mipmap.foto1).toString(),
+                        new Noticia(1,"26 NOV 2017","Noticia 2",R.mipmap.foto1).toString(),
+                        new Noticia(2,"26 NOV 2017","Noticia 3",R.mipmap.foto1).toString()};
 
 
 

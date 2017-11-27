@@ -9,6 +9,8 @@
     <color name="color_light">#ffffff</color>
 
     <color name="background_header_seccion_inicio">#4B4B4B</color>
+    <color name="background_header_seccion_deportes">#02bd8a</color>
+
 
     <color name="fecha">#999999</color>
     <color name="nombre">#222222</color>

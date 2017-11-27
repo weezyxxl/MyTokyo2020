@@ -20,9 +20,9 @@
             android:title="Medal Count" />
 
         <item
-            android:id="@+id/Resultados"
-            android:icon="@drawable/resultados"
-            android:title="Results" />
+            android:id="@+id/sports"
+            android:icon="@drawable/sports"
+            android:title="Sports" />
 
     </group>
 

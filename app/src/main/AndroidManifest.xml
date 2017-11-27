@@ -15,9 +15,6 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.ConNavigationDrawer" />
         <activity
-            android:name=".TabActivity"
-            android:label="@string/title_activity_tab" />
-        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".Loading">
@@ -29,12 +26,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".Disciplina" />
-        <activity
-            android:name=".MedalTableActivity"
-            android:label="Medal Count"
-            android:theme="@style/Theme.ConNavigationDrawer"></activity>
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ArcheryDiscipline"></activity>
     </application>
 
 </manifest>

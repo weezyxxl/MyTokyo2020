@@ -1,5 +1,8 @@
 package com.dam.upm.mytokyo2020;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -11,11 +14,19 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {
 
     TableLayout table;
+    final Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        TextView nombre_perfil = findViewById(R.id.nombreFoto);
+        nombre_perfil.setText("Jose Manuel Carral");
+
+        TextView puntos = findViewById(R.id.puntos);
+        puntos.setText("500");
 
         table = findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
@@ -27,6 +38,41 @@ public class ProfileActivity extends AppCompatActivity {
                 TableRow row1 = new TableRow(this);
                 TableRow row2 = new TableRow(this);
                 TextView ev1 = new TextView(this);
+                ev1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                        // set title
+                        alertDialogBuilder.setTitle("Event Info");
+
+                        // set dialog message
+                        alertDialogBuilder
+                                .setMessage("27/02/2018 - 20:20")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        // if this button is clicked, close
+                                        // current activity
+                                        ProfileActivity.this.finish();
+                                    }
+                                })
+                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        // if this button is clicked, just close
+                                        // the dialog box and do nothing
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        // show it
+                        alertDialog.show();
+
+                    }
+                });
                 ev1.setText("Evento 1");
                 ev1.setGravity(Gravity.CENTER);
 
