@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
@@ -144,6 +145,19 @@ public class MainActivity extends AppCompatActivity
                 fragmentoGenerico = new Fragmento_Sports();
 
                 break;
+
+            case R.id.twitter:
+                Intent intent = null;
+                try {
+                    // get the Twitter app if possible
+                    this.getPackageManager().getPackageInfo("com.twitter.android", 0);
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?user_id=USERID"));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                } catch (Exception e) {
+                    // no Twitter app, revert to browser
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/USERID_OR_PROFILENAME"));
+                }
+                this.startActivity(intent);
 
             case MENU_LOGOUT:
                 doLogout();

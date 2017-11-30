@@ -16,4 +16,8 @@ public class MedalTableActivity extends Fragment {
 
         return inflater.inflate(R.layout.activity_medal_table, container, false);
     }
+
+
+
+
 }

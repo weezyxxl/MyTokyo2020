@@ -24,6 +24,11 @@
             android:icon="@drawable/sports"
             android:title="Sports" />
 
+        <item
+            android:id="@+id/twitter"
+            android:icon="@drawable/ic_twitter"
+            android:title="Twitter" />
+
     </group>
 
 
