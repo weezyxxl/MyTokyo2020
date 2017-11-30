@@ -1,7 +1,9 @@
 package com.dam.upm.mytokyo2020;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
@@ -23,6 +26,11 @@ public class MainActivity extends AppCompatActivity
     private ViewFlipper flipper;
     private float lastX;
     private DrawerLayout drawerLayout;
+    SharedPreferences sharedPreferences;
+    String username;
+    private static final int MENU_LOGOUT = Menu.FIRST + 4;
+    private NavigationView navigationView;
+    private static boolean logOutMarca = false;
 
 
     private void agregarToolbar() {
@@ -46,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         agregarToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         if (navigationView != null) {
             prepararDrawer(navigationView);
@@ -54,110 +62,42 @@ public class MainActivity extends AppCompatActivity
             seleccionarItem(navigationView.getMenu().getItem(0));
         }
 
-
-
-
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-        BottomNavigationView bNav = (BottomNavigationView) findViewById(R.id.navigation);
-        bNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast toast = Toast.makeText(getApplicationContext(),"Tocado",Toast.LENGTH_LONG);
-                toast.show();
-                return true;
-            }
-        });
-
-     flipper.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()){
-                    case MotionEvent.ACTION_DOWN: //Que hacer cuando el usuario presiona la pantalla
-                        lastX = motionEvent.getX(); //Unicamente obtengo la posición de donde ha tocado
-                        //Toast toast = Toast.makeText(getApplicationContext(),"ActionDown",Toast.LENGTH_SHORT);
-                        //toast.show();
-                        break;
-                    case MotionEvent.ACTION_UP: //Que hacer cuando el usuario deja de presionar
-                        //Toast toast2 = Toast.makeText(getApplicationContext(),"ActionUp",Toast.LENGTH_SHORT);
-                        //toast2.show();
-                        float currentX = motionEvent.getX();
-                        if(lastX < currentX){
-                            if(flipper.getDisplayedChild() == 0){
-                                break;
-                            }
-                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_left);
-                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_right);
-                            flipper.showNext();
-                        }
-                        if(lastX > currentX){
-                            if(flipper.getDisplayedChild() == 1){
-                                break;
-                            }
-                            flipper.setInAnimation(getBaseContext(),R.anim.slide_in_from_right);
-                            flipper.setOutAnimation(getBaseContext(),R.anim.slide_out_to_left);
-                            flipper.showPrevious();
-                        }
-                        break;
-                }
-                return true;
-            }
-        });
-        flipper.performClick();
-       // String [] disciplinas = getResources().getStringArray(R.array.Disciplinas);
-        ImageView archery = (ImageView)findViewById(R.id.imageView2);
-        archery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast toast = Toast.makeText(getApplicationContext(),"TocadoArchery",Toast.LENGTH_LONG);
-                toast.show();
-                Intent mainIntent = new Intent(MainActivity.this,Fragmento_Disciplina.class);
-                mainIntent.putExtra("nombre","Archery");
-                startActivity(mainIntent);
-                finish();
-            }
-        });
-    }
-
-
-
-
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                lastX = event.getX();
-                break;
-            case MotionEvent.ACTION_UP:
-                float currentX = event.getX();
-                if(lastX < currentX){
-                    if(flipper.getDisplayedChild() == 0){
-                        break;
-                    }
-                    flipper.setInAnimation(this,R.anim.slide_in_from_left);
-                    flipper.setOutAnimation(this,R.anim.slide_out_to_right);
-                    flipper.showNext();
-                }
-                if(lastX > currentX){
-                    if(flipper.getDisplayedChild() == 1){
-                        break;
-                    }
-                    flipper.setInAnimation(this,R.anim.slide_in_from_right);
-                    flipper.setOutAnimation(this,R.anim.slide_out_to_left);
-                    flipper.showPrevious();
-                }
-
+        sharedPreferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
+        if(sharedPreferences!=null){
+            username = sharedPreferences.getString("username","");
         }
-        return super.onTouchEvent(event);
+
     }
-    */
-    }
+
+         @Override
+         protected void onResume() {
+             super.onResume();
+             System.out.println("#########################");
+             System.out.println("En OnResume()");
+             Intent aux = getIntent();
+             String username = aux.getStringExtra("username");
+             if(username!=null) {
+                 if(username.equals("")){
+                     System.out.println("NO HAY USUARIO");
+                     navigationView.getMenu().removeItem(MENU_LOGOUT);
+                 }else {
+                     System.out.println("HAY USUARIO");
+                     System.out.println("#################################");
+                     System.out.println("Navigation vew count = " + navigationView.getChildCount());
+                     if(navigationView.getChildCount() == 1 && !logOutMarca) {
+                         logOutMarca = true;
+                         navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.ic_profile);
+                         navigationView.getMenu().getItem(0).setCheckable(true);
+                     }
+                     System.out.println("#################################");
+                     System.out.println("Navigation vew count = " + navigationView.getChildCount());
+                 }
+             }else{
+                 System.out.println("NO HAY USUARIO");
+                 navigationView.getMenu().removeItem(MENU_LOGOUT);
+             }
+         }
+
 
     private void prepararDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -166,6 +106,7 @@ public class MainActivity extends AppCompatActivity
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
                         seleccionarItem(menuItem);
+
                         drawerLayout.closeDrawers();
                         return true;
                     }
@@ -182,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.My_profile:
                 // Fragmento para la sección Cuenta
-                if(LoginActivity.dentro==true){
+                if((getIntent().getBooleanExtra("dentro",false))==true){
                     Intent i = new Intent(this,ProfileActivity.class);
                     startActivity(i);
                 }
@@ -203,6 +144,10 @@ public class MainActivity extends AppCompatActivity
                 fragmentoGenerico = new Fragmento_Sports();
 
                 break;
+
+            case MENU_LOGOUT:
+                doLogout();
+                break;
         }
         if (fragmentoGenerico != null) {
             fragmentManager
@@ -214,19 +159,11 @@ public class MainActivity extends AppCompatActivity
         // Setear título actual
         setTitle(itemDrawer.getTitle());
     }
-   /* @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -241,45 +178,21 @@ public class MainActivity extends AppCompatActivity
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case MENU_LOGOUT:
+                doLogout();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-    /*int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);*/
-
-
-   /* @SuppressWarnings("StatementWithEmptyBody")
-    @Override*/
-    /*public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_myTokyo2020) {
-            Intent i = new Intent(this,TabActivity.class);
+         private void doLogout() {
+            SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+            finish();
+            Intent i = new Intent(this,MainActivity.class);
+            i.putExtra("username","");
             startActivity(i);
-
-        } else if (id == R.id.medal_table) {
-            Intent i = new Intent(this,MedalTableActivity.class);
-            startActivity(i);
-
-        } else if (id == R.id.cityTokyo) {
-
-        } else if (id == R.id.about) {
-
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
-
+         }
 }

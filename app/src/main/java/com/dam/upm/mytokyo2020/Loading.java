@@ -42,22 +42,26 @@ public class Loading extends AppCompatActivity {
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
                 connection.setDoInput(true);
-
                 BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String response = br.readLine();
                 String msg = "";
                 String tipo = "";
-                while(response != null){
-                    JSONObject json = new JSONObject(response);
-                    msg = json.getString("msg");
-                    tipo = json.getString("tipo");
-                    response = br.readLine();
-                }
-                if(msg != "" && msg.equals("connected")) {
-                    msgOk = true;
-                }
-                if(tipo != "" && tipo.equals("ok")){
-                    tipoOk = true;
+                if(response == null){
+                    msgOk = false;
+                    tipoOk = false;
+                }else {
+                    while (response != null) {
+                        JSONObject json = new JSONObject(response);
+                        msg = json.getString("msg");
+                        tipo = json.getString("tipo");
+                        response = br.readLine();
+                    }
+                    if (msg != "" && msg.equals("connected")) {
+                        msgOk = true;
+                    }
+                    if (tipo != "" && tipo.equals("ok")) {
+                        tipoOk = true;
+                    }
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -92,6 +96,8 @@ public class Loading extends AppCompatActivity {
                             Toast t = Toast.makeText(getApplicationContext(), "Fallo al Conectar", Toast.LENGTH_LONG);
                             t.show();
                         }
+                    }else{
+                        Toast t = Toast.makeText(getApplicationContext(),"Sin servidor",Toast.LENGTH_LONG);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

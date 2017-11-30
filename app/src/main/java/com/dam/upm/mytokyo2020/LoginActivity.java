@@ -1,7 +1,9 @@
 package com.dam.upm.mytokyo2020;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -128,6 +130,10 @@ public class LoginActivity extends  AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
     public static boolean dentro = false;
     private static boolean continuar = false;
+    private static boolean alertDialog = false;
+    private Context context = this;
+    public static final String myPreferences = "myPrefs";
+    SharedPreferences sharedPreferences;
 
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
@@ -157,34 +163,62 @@ public class LoginActivity extends  AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
+        sharedPreferences = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
 
     }
 
     public void login() {
         Log.d(TAG, "Login");
-
         if (!validate()) {
             onLoginFailed();
             return;
         }
         _loginButton.setEnabled(false);
-
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
-
-
-        new Handler().postDelayed(new Runnable() {
+        new Handler().post(new Runnable() {
             @Override
             public void run() {
                 try {
-                    JSONObject result = new LoginUser().execute(email,password).get();
+                    JSONObject result = new LoginUser().execute(email, password).get();
                     System.out.println("#####################");
                     System.out.println(result.toString());
-                    if(result!=null){
-                        if(result.get("res").equals("ok")){
+                    if (result != null) {
+                        if (result.get("res").equals("ok")) {
                             continuar = true;
-                        }if(result.get("res").equals("fail")){
+                        }
+                        if (result.get("res").equals("fail")) {
                             continuar = false;
+                        }
+                        if (continuar) {
+                            //Llamo a getUser
+                            try {
+                                JSONObject result2 = new GetUsuario().execute(email).get();
+                                if (result2 != null) {
+                                    final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                                            R.style.Base_AppTheme);
+                                    progressDialog.setIndeterminate(true);
+                                    progressDialog.setMessage("Authenticating...");
+                                    progressDialog.show();
+                                    String uName = result2.getString("username");
+                                    sharedPreferences.edit().putString("username",uName);
+                                    sharedPreferences.edit().commit();
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                    dentro = true;
+                                    i.putExtra("username", uName);
+                                    i.putExtra("dentro", true);
+                                    progressDialog.cancel();
+                                    startActivity(i);
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            alertDialog = true;
                         }
                     }
                 } catch (InterruptedException e) {
@@ -194,59 +228,30 @@ public class LoginActivity extends  AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                if(alertDialog){
+                    alertDialog = false;
+                    //Sacar un Dialog
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    // set title
+                    alertDialogBuilder.setTitle("Login Error");
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("The username does not exists. Please consider SignUp.")
+                            .setCancelable(false)
+                            .setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                    _loginButton.setEnabled(true);
+                                }
+                            });
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    // show it
+                    alertDialog.show();
+                }
             }
-        },10000);
-        if(continuar){
-             //Llamo a getUser
-           new Handler().postDelayed(new Runnable() {
-               @Override
-               public void run() {
-                   try {
-                       JSONObject result = new GetUsuario().execute(email).get();
-                       if(result!=null){
-                           final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                                   R.style.Base_AppTheme);
-                           progressDialog.setIndeterminate(true);
-                           progressDialog.setMessage("Authenticating...");
-                           progressDialog.show();
-                            String uName = result.getString("username");
-                            Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                            dentro = true;
-                            i.putExtra("username",uName);
-                            i.putExtra("dentro",true);
-                            progressDialog.cancel();
-                            startActivity(i);
-                       }
-                   } catch (InterruptedException e) {
-                       e.printStackTrace();
-                   } catch (ExecutionException e) {
-                       e.printStackTrace();
-                   } catch (JSONException e) {
-                       e.printStackTrace();
-                   }
-               }
-           },10000);
-        }else{
-            //Sacar un Dialog
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            // set title
-            alertDialogBuilder.setTitle("Login Error");
-            // set dialog message
-            alertDialogBuilder
-                    .setMessage("The username does not exists. Please consider SignUp.")
-                    .setCancelable(false)
-                    .setNeutralButton("Close", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                            _loginButton.setEnabled(true);
-                        }
-                    });
-            // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            // show it
-            alertDialog.show();
-        }
+        });//fin Handler
     }
 
     @Override
@@ -261,13 +266,11 @@ public class LoginActivity extends  AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 dentro=true;
-                System.out.println("dentro = " + dentro);
+                System.out.println("dentro = " + dentro); //Esto hacerlo con SharedPreferences
                 startActivity(i);
             }
         }
     }
-
-
 
     @Override
     public void onBackPressed() {
