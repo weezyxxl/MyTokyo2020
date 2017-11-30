@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     private static final int MENU_LOGOUT = Menu.FIRST + 4;
     private NavigationView navigationView;
     private static boolean logOutMarca = false;
+    private String hola = "hola";
 
 
     private void agregarToolbar() {
@@ -97,7 +98,6 @@ public class MainActivity extends AppCompatActivity
                  navigationView.getMenu().removeItem(MENU_LOGOUT);
              }
          }
-
 
     private void prepararDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
