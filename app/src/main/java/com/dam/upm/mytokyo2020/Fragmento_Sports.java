@@ -47,15 +47,15 @@ public class Fragmento_Sports extends Fragment {
 
                 //long postId = data.get(position).getIdDrawable();
                 //int postId=data.get(position+1).getId();
-                /*Fragment nuevoFragmento = new Fragmento_Disciplina();
+                Fragment nuevoFragmento = new ArcheryDiscipline();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.sports_layout, nuevoFragmento);
+                transaction.replace(R.id.app_bar_main, nuevoFragmento);
                 transaction.addToBackStack(null);
 
                 // Commit a la transacción
-                transaction.commit();*/
-                Intent i = new Intent(getActivity(), ArcheryDiscipline.class);
-                startActivity(i);
+                transaction.commit();
+                //Intent i = new Intent(getActivity(), ArcheryDiscipline.class);
+                //startActivity(i);
 
 
             }

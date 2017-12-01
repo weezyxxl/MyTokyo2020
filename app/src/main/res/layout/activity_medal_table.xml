@@ -98,6 +98,521 @@
                 android:background="#cecece" >
             </FrameLayout>
         </TableRow>
+    <TableRow
+        android:id="@+id/FilaUsa"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/RankUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/CountryUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="United States"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/usa"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:id="@+id/OroUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="46"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/PlataUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="37"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/BronceUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="38"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TotalUsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="121"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/SeparadorCabeceraUsa"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:id="@+id/LineaCabeceraUsa"
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Great Britain"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/uk"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="27"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="23"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="17"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="67"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="China"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/china"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="26"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="18"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="26"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="70"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Russia"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/russia"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="19"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="18"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="19"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="56"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="5"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Germany"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/germany"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="17"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="15"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="42"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="6"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Japan"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/japan"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="12"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="8"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="21"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="41"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="7"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="France"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/france"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="18"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="14"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="42"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="8"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="South Korea"
+            android:textSize="20sp"
+            android:drawableLeft="@drawable/south_korea"
+            android:drawablePadding="42dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="9"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="9"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="21"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:layout_span="6"
+            android:background="#cecece" >
+        </FrameLayout>
+    </TableRow>
+
 
     <TableRow
         android:id="@+id/Fila1"
@@ -109,7 +624,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="1"
+            android:text="9"
             android:textSize="20sp" />
 
         <TextView
@@ -117,9 +632,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="Spain"
+            android:text="Italy"
             android:textSize="20sp"
-            android:drawableLeft="@drawable/spain"
+            android:drawableLeft="@drawable/italy"
             android:drawablePadding="42dp"
 
             />
@@ -129,7 +644,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="13"
+            android:text="8"
             android:textSize="20sp" />
 
         <TextView
@@ -137,7 +652,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="7"
+            android:text="12"
             android:textSize="20sp" />
 
         <TextView
@@ -145,7 +660,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="2"
+        android:text="8"
         android:textSize="20sp" />
 
         <TextView
@@ -153,7 +668,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="22"
+            android:text="28"
             android:textSize="20sp" />
     </TableRow>
 
@@ -183,7 +698,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="2"
+            android:text="10"
             android:textSize="20sp" />
 
         <TextView
@@ -191,9 +706,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="China"
+            android:text="Australia"
             android:textSize="20sp"
-            android:drawableLeft="@drawable/china"
+            android:drawableLeft="@drawable/australia"
             android:drawablePadding="42dp"
 
             />
@@ -203,7 +718,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="7"
+            android:text="8"
             android:textSize="20sp" />
 
         <TextView
@@ -211,7 +726,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="4"
+            android:text="11"
             android:textSize="20sp" />
 
         <TextView
@@ -219,7 +734,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="1"
+            android:text="20"
             android:textSize="20sp" />
 
         <TextView
@@ -227,153 +742,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="12"
+            android:text="29"
             android:textSize="20sp" />
     </TableRow>
 
-    <!--  Nueva Fila -->
 
-    <TableRow
-        android:id="@+id/SeparadorCabecera3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <FrameLayout
-            android:id="@+id/LineaCabecera3"
-            android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:layout_span="6"
-            android:background="#cecece" >
-        </FrameLayout>
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Fila4"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Rank4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="3"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Country4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Italy"
-            android:textSize="20sp"
-            android:drawableLeft="@drawable/italy"
-            android:drawablePadding="42dp"
-            />
-
-        <TextView
-            android:id="@+id/Oro4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="5"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Plata4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="4"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Bronce4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="2"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Total3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="11"
-            android:textSize="20sp" />
-    </TableRow>
-
-    <!--  Nueva Fila -->
-    <TableRow
-        android:id="@+id/SeparadorCabecera4"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <FrameLayout
-            android:id="@+id/LineaCabecera4"
-            android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:layout_span="6"
-            android:background="#cecece" >
-        </FrameLayout>
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/Fila5"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Rank5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="4"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Country5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Japan"
-            android:textSize="20sp"
-            android:drawableLeft="@drawable/japan"
-            android:drawablePadding="42dp"
-            />
-
-        <TextView
-            android:id="@+id/Oro5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="2"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Plata5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="3"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Bronce5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="4"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/Total4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="9"
-            android:textSize="20sp" />
-    </TableRow>
 
 </TableLayout>

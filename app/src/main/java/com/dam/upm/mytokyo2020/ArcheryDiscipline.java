@@ -2,36 +2,44 @@ package com.dam.upm.mytokyo2020;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ArcheryDiscipline extends AppCompatActivity {
+public class ArcheryDiscipline extends Fragment {
     TabHost th;
     TextView disciplinaName;
     Bundle extras;
     TableLayout table;
-    final Context context = this;
+    //final Context context = this;
 
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disciplina);
+        return inflater.inflate(R.layout.activity_disciplina, container, false);
+    }
 
-        disciplinaName = (TextView)findViewById(R.id.disciplinaTitle);
-        extras = getIntent().getExtras();
+    public void onActivityCreated(Bundle state) {
+        super.onActivityCreated(state);
+
+        disciplinaName = (TextView)getView().findViewById(R.id.disciplinaTitle);
+        extras = getActivity().getIntent().getExtras();
         if(extras != null){
             disciplinaName.setText(extras.getString("nombre"));
         }
 
-        th = (TabHost)findViewById(R.id.tabHost);
+        th = (TabHost)getView().findViewById(R.id.tabHost);
 
         th.setup();
 
@@ -45,20 +53,20 @@ public class ArcheryDiscipline extends AppCompatActivity {
         tab2.setIndicator("Schedule");
         tab2.setContent(R.id.Schedule);
 
-        table = findViewById(R.id.table);
+        table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
         System.out.println(table.getChildCount());
         for(int i = 0 ; i < 2 ; i++){
             //Al inicio solo tiene un hijo (una row) que es el encabezado
             if(i>0) {
                 //Aqui crear tantas filas como eventos haya
-                TableRow row1 = new TableRow(this);
-                TableRow row2 = new TableRow(this);
-                TextView ev1 = new TextView(this);
+                TableRow row1 = new TableRow(getActivity().getApplicationContext());
+                TableRow row2 = new TableRow(getActivity().getApplicationContext());
+                TextView ev1 = new TextView(getActivity().getApplicationContext());
                 ev1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
                         // set title
                         alertDialogBuilder.setTitle("Buy Ticket");
@@ -71,7 +79,7 @@ public class ArcheryDiscipline extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog,int id) {
                                         // if this button is clicked, close
                                         // current activity
-                                        ArcheryDiscipline.this.finish();
+                                        ArcheryDiscipline.this.getActivity().finish();
                                     }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -93,15 +101,15 @@ public class ArcheryDiscipline extends AppCompatActivity {
                 ev1.setText("Evento 1");
                 ev1.setGravity(Gravity.CENTER);
 
-                TextView dia1 = new TextView(this);
+                TextView dia1 = new TextView(getActivity().getApplicationContext());
                 dia1.setText("25/07/2020");
                 dia1.setGravity(Gravity.CENTER);
 
-                TextView hora1 = new TextView(this);
+                TextView hora1 = new TextView(getActivity().getApplicationContext());
                 hora1.setText("12:14");
                 hora1.setGravity(Gravity.CENTER);
 
-                TextView lugar1 = new TextView(this);
+                TextView lugar1 = new TextView(getActivity().getApplicationContext());
                 lugar1.setText("Estadio Olimpico");
                 lugar1.setGravity(Gravity.CENTER);
 
@@ -111,20 +119,20 @@ public class ArcheryDiscipline extends AppCompatActivity {
                 row1.addView(lugar1);
                 row1.setPadding(0,25,0,0);
 
-                TextView ev2 = new TextView(this);
+                TextView ev2 = new TextView(getActivity().getApplicationContext());
                 ev2.setText("Evento 2");
                 ev2.setGravity(Gravity.CENTER);
 
-                TextView dia2 = new TextView(this);
+                TextView dia2 = new TextView(getActivity().getApplicationContext());
                 dia2.setText("26/07/2020");
                 dia2.setGravity(Gravity.CENTER);
 
 
-                TextView hora2 = new TextView(this);
+                TextView hora2 = new TextView(getActivity().getApplicationContext());
                 hora2.setText("09:00");
                 hora2.setGravity(Gravity.CENTER);
 
-                TextView lugar2 = new TextView(this);
+                TextView lugar2 = new TextView(getActivity().getApplicationContext());
                 lugar2.setText("Estadio de las golondrinas");
                 lugar2.setGravity(Gravity.CENTER);
 
@@ -148,4 +156,7 @@ public class ArcheryDiscipline extends AppCompatActivity {
 
 
     }
-}
+
+    }
+
+

@@ -9,10 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/background_header_seccion_inicio"
+        android:background="#747474"
         android:gravity="center"
         android:padding="8dp"
         android:text="Last News"
+        android:textSize="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/color_light" />
 

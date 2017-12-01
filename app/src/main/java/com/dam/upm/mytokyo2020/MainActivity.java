@@ -125,14 +125,13 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.My_profile:
                 // Fragmento para la sección Cuenta
-                if((getIntent().getBooleanExtra("dentro",false))==true){
-                    Intent i = new Intent(this,ProfileActivity.class);
-                    startActivity(i);
-                }
+                //if((getIntent().getBooleanExtra("dentro",false))==true){
+                    fragmentoGenerico = new ProfileActivity();
+                /*}
                 else{
                     Intent i = new Intent(this,LoginActivity.class);
                     startActivity(i);
-                }
+                }*/
                 break;
             case R.id.medal_table:
                 // Fragmento para la sección Categorías
@@ -149,16 +148,17 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.twitter:
                 Intent intent = null;
-                try {
+                /*try {
                     // get the Twitter app if possible
                     this.getPackageManager().getPackageInfo("com.twitter.android", 0);
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?user_id=USERID"));
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/tokyo2020?lang=es"));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 } catch (Exception e) {
-                    // no Twitter app, revert to browser
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/USERID_OR_PROFILENAME"));
-                }
+                    // no Twitter app, revert to browser*/
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/tokyo2020?lang=es"));
+
                 this.startActivity(intent);
+                break;
 
             case MENU_LOGOUT:
                 doLogout();

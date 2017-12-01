@@ -26,7 +26,7 @@ public class AdaptadorInicio
         extends RecyclerView.Adapter<AdaptadorInicio.ViewHolder> {
 
     private static Context mContext;
-    CustomItemClickListener listener;
+    private static CustomItemClickListener listener;
     ArrayList<Noticia> data;
 
 
@@ -39,7 +39,7 @@ public class AdaptadorInicio
 
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder  {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
         // Campos respectivos de un item
         public String mItem;
         public TextView nombre;
@@ -51,7 +51,13 @@ public class AdaptadorInicio
             nombre = (TextView) v.findViewById(R.id.nombre_noticia);
             fecha = (TextView) v.findViewById(R.id.fecha_noticia);
             imagen = (ImageView) v.findViewById(R.id.miniatura_noticia);
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
+
+        }
+
+        public void onClick(View v)
+        {
+            listener.onItemClick(v, this.getLayoutPosition());
 
         }
 
