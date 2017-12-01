@@ -125,13 +125,13 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.My_profile:
                 // Fragmento para la sección Cuenta
-                //if((getIntent().getBooleanExtra("dentro",false))==true){
+                if((getIntent().getBooleanExtra("dentro",false))==true){
                     fragmentoGenerico = new ProfileActivity();
-                /*}
+                }
                 else{
                     Intent i = new Intent(this,LoginActivity.class);
                     startActivity(i);
-                }*/
+                }
                 break;
             case R.id.medal_table:
                 // Fragmento para la sección Categorías
