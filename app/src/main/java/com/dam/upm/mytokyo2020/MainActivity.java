@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     SharedPreferences sharedPreferences;
     String username;
-    private static final int MENU_LOGOUT = Menu.FIRST + 4;
+    private static final int MENU_LOGOUT = Menu.FIRST + 5;
     private NavigationView navigationView;
     private static boolean logOutMarca = false;
     private String hola = "hola";
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity
                      System.out.println("HAY USUARIO");
                      System.out.println("#################################");
                      System.out.println("Navigation vew count = " + navigationView.getChildCount());
+                     System.out.println("Logout Marca " + logOutMarca);
                      if(navigationView.getChildCount() == 1 && !logOutMarca) {
                          logOutMarca = true;
                          navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.ic_profile);
