@@ -1,5 +1,8 @@
 package com.dam.upm.mytokyo2020;
 
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -15,10 +18,50 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.concurrent.ExecutionException;
+
 public class ProfileActivity extends Fragment {
 
     TableLayout table;
+    SharedPreferences sharedPreferences;
     //final Context context = this;
+
+    private class GetEvents extends AsyncTask<String,Integer,JSONArray>{
+        protected JSONArray doInBackground(String... params){
+            JSONArray respuesta = null;
+
+            try {
+                URL url = new URL(ServerInfo.SERVER+"GetShoppingHistory?email="+params[0]);
+                URLConnection connection = url.openConnection();
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String response = br.readLine();
+                while(response!=null){
+                    respuesta = new JSONArray(response);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return respuesta;
+        }
+    }
+
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -31,11 +74,38 @@ public class ProfileActivity extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
+        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+
         TextView nombre_perfil = getView().findViewById(R.id.nombreFoto);
-        nombre_perfil.setText("Jose Manuel Carral");
+        nombre_perfil.setText(sharedPreferences.getString("username",""));
+        final String email = sharedPreferences.getString("email","");
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONArray eventosUsuario = new GetEvents().execute(email).get();
+                    int i = 0;
+                    while(!eventosUsuario.isNull(i)){
+                        JSONObject evento = eventosUsuario.getJSONObject(i);
+                        JSONObject disciplina = evento.getJSONObject("disciplina");
+                        i++;
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         TextView puntos = getView().findViewById(R.id.puntos);
         puntos.setText("500");
+
+        //Buscar los eventos del usuario
 
         table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");

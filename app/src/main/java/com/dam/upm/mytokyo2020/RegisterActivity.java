@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
             boolean msgInserted = false;
             boolean tipoOk = false;
             try {
-                URL url = new URL("http://10.0.2.2:8080/MyTokyo2020Server/SignUp?email="+params[0]+"&username="+params[1]+"&password="+params[2]);
+                URL url = new URL(ServerInfo.SERVER+"SignUp?email="+params[0]+"&username="+params[1]+"&password="+params[2]);
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
                 connection.setDoInput(true);

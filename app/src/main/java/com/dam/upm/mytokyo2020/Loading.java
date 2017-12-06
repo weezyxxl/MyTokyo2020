@@ -38,7 +38,7 @@ public class Loading extends AppCompatActivity {
             boolean msgOk = false;
             boolean tipoOk = false;
             try {
-                URL url = new URL("http://10.0.2.2:8080/MyTokyo2020Server/CheckConnectivity");
+                URL url = new URL(ServerInfo.SERVER+"CheckConnectivity");
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
                 connection.setDoInput(true);

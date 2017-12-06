@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyTokyo2020</string>
+    <string name="app_name">"MyTokyo2020"</string>
     <string-array name="array_names">
         <item>Opcion1</item>
         <item>Opcion2</item>

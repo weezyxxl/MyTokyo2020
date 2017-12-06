@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity
                 // Fragmento para la sección Cuenta
                 if((getIntent().getBooleanExtra("dentro",false))==true){
                     fragmentoGenerico = new ProfileActivity();
+
                 }
                 else{
                     Intent i = new Intent(this,LoginActivity.class);
@@ -165,12 +166,13 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         if (fragmentoGenerico != null) {
+            //Bundle bu = new Bundle();
+            //fragmentoGenerico.setArguments(bu);
             fragmentManager
                     .beginTransaction()
                     .replace(R.id.app_bar_main, fragmentoGenerico)
                     .commit();
         }
-
         // Setear título actual
         setTitle(itemDrawer.getTitle());
     }

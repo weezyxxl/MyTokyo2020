@@ -47,7 +47,7 @@ public class LoginActivity extends  AppCompatActivity {
         protected JSONObject doInBackground(String... params){
             boolean loginOk = false;
             try {
-                URL url = new URL("http://10.0.2.2:8080/MyTokyo2020Server/Login?email="+params[0]+"&password="+params[1]);
+                URL url = new URL(ServerInfo.SERVER+"Login?email="+params[0]+"&password="+params[1]);
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
                 connection.setDoInput(true);
@@ -94,7 +94,7 @@ public class LoginActivity extends  AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... params) {
             try {
-                URL url = new URL("http://10.0.2.2:8080/MyTokyo2020Server/GetUser?email="+params[0]);
+                URL url = new URL(ServerInfo.SERVER+"GetUser?email="+params[0]);
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
                 connection.setDoInput(true);
@@ -123,8 +123,6 @@ public class LoginActivity extends  AppCompatActivity {
             return jResponse;
         }
     }
-
-
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
@@ -195,19 +193,21 @@ public class LoginActivity extends  AppCompatActivity {
                             try {
                                 JSONObject result2 = new GetUsuario().execute(email).get();
                                 if (result2 != null) {
-                                    final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                                    /*final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                                             R.style.Base_AppTheme);
                                     progressDialog.setIndeterminate(true);
                                     progressDialog.setMessage("Authenticating...");
-                                    progressDialog.show();
+                                    progressDialog.show();*/
                                     String uName = result2.getString("username");
                                     sharedPreferences.edit().putString("username",uName);
+                                    sharedPreferences.edit().putString("email",email);
                                     sharedPreferences.edit().commit();
                                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                     dentro = true;
                                     i.putExtra("username", uName);
+                                    i.putExtra("email",email);
                                     i.putExtra("dentro", true);
-                                    progressDialog.cancel();
+                                    //progressDialog.cancel();
                                     startActivity(i);
                                 }
                             } catch (InterruptedException e) {
