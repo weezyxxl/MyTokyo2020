@@ -34,6 +34,8 @@ public class ProfileActivity extends Fragment {
 
     TableLayout table;
     SharedPreferences sharedPreferences;
+    JSONObject [] eventos;
+    JSONObject [] disciplinas;
     //final Context context = this;
 
     private class GetEvents extends AsyncTask<String,Integer,JSONArray>{
@@ -80,15 +82,20 @@ public class ProfileActivity extends Fragment {
         nombre_perfil.setText(sharedPreferences.getString("username",""));
         final String email = sharedPreferences.getString("email","");
 
+
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 try {
                     JSONArray eventosUsuario = new GetEvents().execute(email).get();
+                    eventos = new JSONObject[eventosUsuario.length()];
+                    disciplinas = new JSONObject[eventosUsuario.length()];
                     int i = 0;
                     while(!eventosUsuario.isNull(i)){
                         JSONObject evento = eventosUsuario.getJSONObject(i);
                         JSONObject disciplina = evento.getJSONObject("disciplina");
+                        eventos[i] = evento;
+                        disciplinas[i] = disciplina;
                         i++;
                     }
 
@@ -105,23 +112,29 @@ public class ProfileActivity extends Fragment {
         TextView puntos = getView().findViewById(R.id.puntos);
         puntos.setText("500");
 
+        while((eventos == null)&&(disciplinas==null)){}
+        //Aqui ya tengo los eventos y disciplinas
+
+
+
         //Buscar los eventos del usuario
 
         table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
         System.out.println(table.getChildCount());
-        for(int i = 0 ; i < 2 ; i++){
+        for(int i = 0 ; i < eventos.length + 1 ; i++){
             //Al inicio solo tiene un hijo (una row) que es el encabezado
             if(i>0) {
                 //Aqui crear tantas filas como eventos haya
                 TableRow row1 = new TableRow(getActivity().getApplicationContext());
                 TableRow row2 = new TableRow(getActivity().getApplicationContext());
                 TextView ev1 = new TextView(getActivity().getApplicationContext());
+                try {
+                    String nombreDisciplina = disciplinas[i].getString("nombre");
                 ev1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-
                         // set title
                         alertDialogBuilder.setTitle("Event Info");
                         // set dialog message
@@ -152,6 +165,9 @@ public class ProfileActivity extends Fragment {
 
                     }
                 });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 ev1.setText("Evento 1");
                 ev1.setGravity(Gravity.CENTER);
 
