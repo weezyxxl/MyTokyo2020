@@ -114,17 +114,16 @@ public class ProfileActivity extends Fragment {
 
         while((eventos == null)&&(disciplinas==null)){}
         //Aqui ya tengo los eventos y disciplinas
-
-
-
         //Buscar los eventos del usuario
 
         table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
         System.out.println(table.getChildCount());
+
         for(int i = 0 ; i < eventos.length + 1 ; i++){
             //Al inicio solo tiene un hijo (una row) que es el encabezado
             if(i>0) {
+                final int j = i;
                 //Aqui crear tantas filas como eventos haya
                 TableRow row1 = new TableRow(getActivity().getApplicationContext());
                 TableRow row2 = new TableRow(getActivity().getApplicationContext());
@@ -138,28 +137,31 @@ public class ProfileActivity extends Fragment {
                         // set title
                         alertDialogBuilder.setTitle("Event Info");
                         // set dialog message
-                        alertDialogBuilder
-                                .setMessage("27/02/2018 - 20:20")
-                                .setCancelable(false)
-                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // if this button is clicked, close
-                                        // current activity
-                                        ProfileActivity.this.getActivity().finish();
-                                    }
-                                })
-                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // if this button is clicked, just close
-                                        // the dialog box and do nothing
-                                        dialog.cancel();
-                                    }
-                                });
+                        try {
+                            alertDialogBuilder
+                                    .setMessage(eventos[j].getString("Tipo"))
+                                    .setCancelable(false)
+                                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, close
+                                            // current activity
+                                            ProfileActivity.this.getActivity().finish();
+                                        }
+                                    })
+                                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            dialog.cancel();
+                                        }
+                                    });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         // create alert dialog
 
                         AlertDialog alertDialog = alertDialogBuilder.create();
-
                         // show it
                         alertDialog.show();
 
