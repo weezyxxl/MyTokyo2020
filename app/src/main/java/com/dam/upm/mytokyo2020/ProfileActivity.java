@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,30 +69,33 @@ public class ProfileActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-
+        System.out.println("OnCreateView");
         return inflater.inflate(R.layout.activity_profile, container, false);
     }
 
 
     public void onActivityCreated(Bundle state) {
+        System.out.println("On Activity Created");
         super.onActivityCreated(state);
 
-        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         TextView nombre_perfil = getView().findViewById(R.id.nombreFoto);
-        nombre_perfil.setText(sharedPreferences.getString("username",""));
-        final String email = sharedPreferences.getString("email","");
+        nombre_perfil.setText(sharedPreferences.getString("username", ""));
+        final String email = sharedPreferences.getString("email", "");
 
+        System.out.println("Despues O");
 
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 try {
+                    System.out.println("En el POST");
                     JSONArray eventosUsuario = new GetEvents().execute(email).get();
                     eventos = new JSONObject[eventosUsuario.length()];
                     disciplinas = new JSONObject[eventosUsuario.length()];
                     int i = 0;
-                    while(!eventosUsuario.isNull(i)){
+                    while (!eventosUsuario.isNull(i)) {
                         JSONObject evento = eventosUsuario.getJSONObject(i);
                         JSONObject disciplina = evento.getJSONObject("disciplina");
                         eventos[i] = evento;
@@ -109,102 +113,105 @@ public class ProfileActivity extends Fragment {
             }
         });
 
-        TextView puntos = getView().findViewById(R.id.puntos);
-        puntos.setText("500");
-
-        while((eventos == null)&&(disciplinas==null)){}
+        if ((eventos == null) && (disciplinas == null)) {
+            System.out.println("!!!!!!!!!!!!");
+        }  //Cuidao que si no hay eventos se queda aqui la aplicacion y se cuelga
         //Aqui ya tengo los eventos y disciplinas
         //Buscar los eventos del usuario
+        else {
+            TextView puntos = getView().findViewById(R.id.puntos);
+            puntos.setText("500");
 
-        table = getView().findViewById(R.id.table);
-        System.out.println("Numero de hijos de la tabla");
-        System.out.println(table.getChildCount());
+            table = getView().findViewById(R.id.table);
+            System.out.println("Numero de hijos de la tabla");
+            System.out.println(table.getChildCount());
 
-        for(int i = 0 ; i < eventos.length + 1 ; i++){
-            //Al inicio solo tiene un hijo (una row) que es el encabezado
-            if(i>0) {
-                final int j = i;
-                //Aqui crear tantas filas como eventos haya
-                TableRow row1 = new TableRow(getActivity().getApplicationContext());
-                TableRow row2 = new TableRow(getActivity().getApplicationContext());
-                TextView ev1 = new TextView(getActivity().getApplicationContext());
-                try {
-                    String nombreDisciplina = disciplinas[i].getString("nombre");
-                ev1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                        // set title
-                        alertDialogBuilder.setTitle("Event Info");
-                        // set dialog message
-                        try {
-                            alertDialogBuilder
-                                    .setMessage(eventos[j].getString("Tipo"))
-                                    .setCancelable(false)
-                                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog,int id) {
-                                            // if this button is clicked, close
-                                            // current activity
-                                            ProfileActivity.this.getActivity().finish();
-                                        }
-                                    })
-                                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog,int id) {
-                                            // if this button is clicked, just close
-                                            // the dialog box and do nothing
-                                            dialog.cancel();
-                                        }
-                                    });
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+            for (int i = 0; i < eventos.length + 1; i++) {
+                //Al inicio solo tiene un hijo (una row) que es el encabezado
+                if (i > 0) {
+                    final int j = i;
+                    //Aqui crear tantas filas como eventos haya
+                    TableRow row1 = new TableRow(getActivity().getApplicationContext());
+                    TableRow row2 = new TableRow(getActivity().getApplicationContext());
+                    TextView ev1 = new TextView(getActivity().getApplicationContext());
+                    try {
+                        String nombreDisciplina = disciplinas[i].getString("nombre");
+                        ev1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                                // set title
+                                alertDialogBuilder.setTitle("Event Info");
+                                // set dialog message
+                                try {
+                                    alertDialogBuilder
+                                            .setMessage(eventos[j].getString("Tipo"))
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    // if this button is clicked, close
+                                                    // current activity
+                                                    ProfileActivity.this.getActivity().finish();
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    // if this button is clicked, just close
+                                                    // the dialog box and do nothing
+                                                    dialog.cancel();
+                                                }
+                                            });
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-                        // create alert dialog
+                                // create alert dialog
 
-                        AlertDialog alertDialog = alertDialogBuilder.create();
-                        // show it
-                        alertDialog.show();
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                // show it
+                                alertDialog.show();
 
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    ev1.setText("Evento 1");
+                    ev1.setGravity(Gravity.CENTER);
+
+                    TextView hora1 = new TextView(getActivity().getApplicationContext());
+                    hora1.setText("18:00:10");
+                    hora1.setGravity(Gravity.CENTER);
+
+                    TextView lugar1 = new TextView(getActivity().getApplicationContext());
+                    lugar1.setText("Estadio Olimpico");
+                    lugar1.setGravity(Gravity.CENTER);
+
+                    row1.addView(ev1);
+                    row1.addView(hora1);
+                    row1.addView(lugar1);
+                    row1.setPadding(0, 25, 0, 0);
+
+                    TextView ev2 = new TextView(getActivity().getApplicationContext());
+                    ev2.setText("Evento 2");
+                    ev2.setGravity(Gravity.CENTER);
+
+                    TextView hora2 = new TextView(getActivity().getApplicationContext());
+                    hora2.setText("19:00:10");
+                    hora2.setGravity(Gravity.CENTER);
+
+                    TextView lugar2 = new TextView(getActivity().getApplicationContext());
+                    lugar2.setText("Estadio de las golondrinas");
+                    lugar2.setGravity(Gravity.CENTER);
+
+                    row2.addView(ev2);
+                    row2.addView(hora2);
+                    row2.addView(lugar2);
+                    row2.setPadding(0, 25, 0, 0);
+                    table.addView(row1, i);
+                    table.addView(row2, i + 1);
+                    break;
                 }
-                ev1.setText("Evento 1");
-                ev1.setGravity(Gravity.CENTER);
-
-                TextView hora1 = new TextView(getActivity().getApplicationContext());
-                hora1.setText("18:00:10");
-                hora1.setGravity(Gravity.CENTER);
-
-                TextView lugar1 = new TextView(getActivity().getApplicationContext());
-                lugar1.setText("Estadio Olimpico");
-                lugar1.setGravity(Gravity.CENTER);
-
-                row1.addView(ev1);
-                row1.addView(hora1);
-                row1.addView(lugar1);
-                row1.setPadding(0,25,0,0);
-
-                TextView ev2 = new TextView(getActivity().getApplicationContext());
-                ev2.setText("Evento 2");
-                ev2.setGravity(Gravity.CENTER);
-
-                TextView hora2 = new TextView(getActivity().getApplicationContext());
-                hora2.setText("19:00:10");
-                hora2.setGravity(Gravity.CENTER);
-
-                TextView lugar2 = new TextView(getActivity().getApplicationContext());
-                lugar2.setText("Estadio de las golondrinas");
-                lugar2.setGravity(Gravity.CENTER);
-
-                row2.addView(ev2);
-                row2.addView(hora2);
-                row2.addView(lugar2);
-                row2.setPadding(0,25,0,0);
-                table.addView(row1,i);
-                table.addView(row2,i+1);
-                break;
             }
         }
     }

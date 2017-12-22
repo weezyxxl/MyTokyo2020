@@ -6,6 +6,6 @@ package com.dam.upm.mytokyo2020;
 
 public class ServerInfo {
 
-    static final String SERVER = "http://mytokyo2020.jelasticlw.com.br/";
+    //static final String SERVER = "http://mytokyo2020.jelasticlw.com.br/";
 
 }

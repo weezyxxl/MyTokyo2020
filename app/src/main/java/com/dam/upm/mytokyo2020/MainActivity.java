@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -117,8 +118,6 @@ public class MainActivity extends AppCompatActivity
     }
     private void seleccionarItem(MenuItem itemDrawer) {
         Fragment fragmentoGenerico = null;
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
         switch (itemDrawer.getItemId()) {
             case R.id.item_inicio:
                 fragmentoGenerico = new Fragmento_Noticias();
@@ -127,7 +126,8 @@ public class MainActivity extends AppCompatActivity
                 // Fragmento para la sección Cuenta
                 if((getIntent().getBooleanExtra("dentro",false))==true){
                     fragmentoGenerico = new ProfileActivity();
-
+                    System.out.println("##################");
+                    System.out.println("$$$$$$$$");
                 }
                 else{
                     Intent i = new Intent(this,LoginActivity.class);
@@ -168,10 +168,14 @@ public class MainActivity extends AppCompatActivity
         if (fragmentoGenerico != null) {
             //Bundle bu = new Bundle();
             //fragmentoGenerico.setArguments(bu);
-            fragmentManager
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.app_bar_main,fragmentoGenerico);
+            ft.commit();
+            /*fragmentManager
                     .beginTransaction()
                     .replace(R.id.app_bar_main, fragmentoGenerico)
-                    .commit();
+                    .commit();*/
         }
         // Setear título actual
         setTitle(itemDrawer.getTitle());

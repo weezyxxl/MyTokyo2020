@@ -46,6 +46,8 @@ public class Loading extends AppCompatActivity {
                 String response = br.readLine();
                 String msg = "";
                 String tipo = "";
+                System.out.println("#######################");
+                System.out.println(response);
                 if(response == null){
                     msgOk = false;
                     tipoOk = false;
