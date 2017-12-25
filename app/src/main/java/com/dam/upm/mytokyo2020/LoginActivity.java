@@ -198,7 +198,11 @@ public class LoginActivity extends  AppCompatActivity {
                                     progressDialog.setIndeterminate(true);
                                     progressDialog.setMessage("Authenticating...");
                                     progressDialog.show();*/
+                                    System.out.println("EN EL LOGIN INSERTANDO LAS SHAREDPREFERENCES");
                                     String uName = result2.getString("username");
+                                    System.out.println("Username => " + uName);
+                                    System.out.println("Email => " + email);
+                                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("username",uName);
                                     sharedPreferences.edit().putString("email",email);
                                     sharedPreferences.edit().commit();

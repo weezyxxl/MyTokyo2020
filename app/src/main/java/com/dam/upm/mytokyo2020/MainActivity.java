@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     SharedPreferences sharedPreferences;
     String username;
+    String email;
     private static final int MENU_LOGOUT = Menu.FIRST + 5;
     private NavigationView navigationView;
     private static boolean logOutMarca = false;
@@ -65,9 +66,10 @@ public class MainActivity extends AppCompatActivity
             seleccionarItem(navigationView.getMenu().getItem(0));
         }
 
-        sharedPreferences = getSharedPreferences("myPrefs",MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
         if(sharedPreferences!=null){
             username = sharedPreferences.getString("username","");
+            email = sharedPreferences.getString("email","");
         }
 
     }
@@ -85,6 +87,10 @@ public class MainActivity extends AppCompatActivity
                      navigationView.getMenu().removeItem(MENU_LOGOUT);
                  }else {
                      System.out.println("HAY USUARIO");
+                     sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                     sharedPreferences.edit().putString("username",username);
+                     sharedPreferences.edit().putString("email",aux.getStringExtra("email"));
+                     sharedPreferences.edit().commit();
                      System.out.println("#################################");
                      System.out.println("Navigation vew count = " + navigationView.getChildCount());
                      System.out.println("Logout Marca " + logOutMarca);
@@ -126,6 +132,10 @@ public class MainActivity extends AppCompatActivity
                 // Fragmento para la sección Cuenta
                 if((getIntent().getBooleanExtra("dentro",false))==true){
                     fragmentoGenerico = new ProfileActivity();
+                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("username",username);
+                    sharedPreferences.edit().putString("email",email);
+                    sharedPreferences.edit().commit();
                     System.out.println("##################");
                     System.out.println("$$$$$$$$");
                 }
@@ -168,6 +178,17 @@ public class MainActivity extends AppCompatActivity
         if (fragmentoGenerico != null) {
             //Bundle bu = new Bundle();
             //fragmentoGenerico.setArguments(bu);
+            if(sharedPreferences!=null) {
+                System.out.println("ACTIVITY MAIN");
+                /*System.out.println("SharedPreferences no son null");
+                sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                System.out.println("Nombre:" + sharedPreferences.getString("username",""));
+                System.out.println("Email: " + sharedPreferences.getString("email",""));*/
+                Bundle bu = new Bundle();
+                bu.putString("username",getIntent().getExtras().getString("username"));
+                bu.putString("email",getIntent().getExtras().getString("email"));
+                fragmentoGenerico.setArguments(bu);
+            }
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.app_bar_main,fragmentoGenerico);
@@ -207,7 +228,7 @@ public class MainActivity extends AppCompatActivity
     }
 
          private void doLogout() {
-            SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
