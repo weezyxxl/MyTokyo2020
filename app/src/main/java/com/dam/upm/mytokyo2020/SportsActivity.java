@@ -24,6 +24,8 @@ public class SportsActivity extends Fragment {
 
         return view;
     }
+
+
         /*super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports);
 

@@ -279,7 +279,10 @@ public class LoginActivity extends  AppCompatActivity {
     @Override
     public void onBackPressed() {
         // disable going back to the MainActivity
-        moveTaskToBack(true);
+        //moveTaskToBack(true);
+        System.out.println("En back Pressed Login");
+        super.onBackPressed();
+        //finish();
     }
 
     public void onLoginSuccess() {

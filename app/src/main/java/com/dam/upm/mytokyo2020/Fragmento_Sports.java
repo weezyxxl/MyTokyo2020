@@ -65,4 +65,9 @@ public class Fragmento_Sports extends Fragment {
         return view;
     }
 
+    public boolean onBackPressed(){
+        return true;
+    }
+
+
 }

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     String username;
     String email;
-    private static final int MENU_LOGOUT = Menu.FIRST + 5;
+    private static final int MENU_LOGOUT = Menu.FIRST + 6;
     private NavigationView navigationView;
     private static boolean logOutMarca = false;
     private String hola = "hola";
@@ -68,11 +68,29 @@ public class MainActivity extends AppCompatActivity
 
         sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
         if(sharedPreferences!=null){
-            username = sharedPreferences.getString("username","");
-            email = sharedPreferences.getString("email","");
+            if(sharedPreferences.getString("username","")!=null) {
+                username = sharedPreferences.getString("username", "");
+            }
+            if(sharedPreferences.getString("email","")!=null) {
+                email = sharedPreferences.getString("email", "");
+            }
         }
 
     }
+
+         @Override
+         public void onBackPressed() {
+
+             int count = getFragmentManager().getBackStackEntryCount();
+             System.out.println("La cuenta del backPressed es " + count);
+             if(count == 0){
+                 super.onBackPressed();
+             }else{
+                 getFragmentManager().popBackStack();
+             }
+             //super.onBackPressed();
+             //finish();
+         }
 
          @Override
          protected void onResume() {
@@ -96,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                      System.out.println("Logout Marca " + logOutMarca);
                      if(navigationView.getChildCount() == 1 && !logOutMarca) {
                          logOutMarca = true;
-                         navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.ic_profile);
+                         navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.logout);
                          navigationView.getMenu().getItem(0).setCheckable(true);
                      }
                      System.out.println("#################################");
@@ -184,14 +202,23 @@ public class MainActivity extends AppCompatActivity
                 sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                 System.out.println("Nombre:" + sharedPreferences.getString("username",""));
                 System.out.println("Email: " + sharedPreferences.getString("email",""));*/
-                Bundle bu = new Bundle();
-                bu.putString("username",getIntent().getExtras().getString("username"));
-                bu.putString("email",getIntent().getExtras().getString("email"));
-                fragmentoGenerico.setArguments(bu);
+                if(getIntent()!=null) {
+                    if(getIntent().getExtras()!=null) {
+                        if (getIntent().getExtras().getString("username") != null) {
+                            if (getIntent().getExtras().getString("email") != null) {
+                                Bundle bu = new Bundle();
+                                bu.putString("username", getIntent().getExtras().getString("username"));
+                                bu.putString("email", getIntent().getExtras().getString("email"));
+                                fragmentoGenerico.setArguments(bu);
+                            }
+                        }
+                    }
+                }
             }
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.app_bar_main,fragmentoGenerico);
+            ft.addToBackStack(null);
             ft.commit();
             /*fragmentManager
                     .beginTransaction()

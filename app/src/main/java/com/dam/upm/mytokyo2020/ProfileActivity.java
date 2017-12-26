@@ -74,6 +74,7 @@ public class ProfileActivity extends Fragment {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
+                respuesta = null;
             }
             return respuesta;
         }

@@ -29,6 +29,11 @@
             android:icon="@drawable/ic_twitter"
             android:title="Twitter" />
 
+        <item
+            android:id="@+id/tokyo"
+            android:icon="@drawable/tokyotower_1f5fc"
+            android:title="Visit Tokyo" />
+
     </group>
 
 
