@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        //Esto es para probar
-        FirebaseMessaging.getInstance().subscribeToTopic("atletics");
+
 
     }
 

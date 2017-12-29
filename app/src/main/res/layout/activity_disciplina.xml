@@ -106,7 +106,6 @@
                                     android:padding="30dp"
                                     android:rowCount="2">
 
-
                                     <TextView
                                         android:id="@+id/texto_nombre"
                                         android:layout_width="wrap_content"
@@ -126,6 +125,12 @@
                                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                                 </GridLayout>
+                                <ImageButton
+                                    android:id="@+id/notification"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    card_view:srcCompat="@drawable/ic_notifications_none_black_18dp" />
                             </android.support.v7.widget.CardView>
 
                             <TextView

@@ -10,17 +10,24 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.io.InputStream;
 
 public class ArcheryDiscipline extends Fragment {
     TabHost th;
     TextView disciplinaName;
     Bundle extras;
     TableLayout table;
+    ImageView bell;
     //final Context context = this;
 
     public View onCreateView(LayoutInflater inflater,
@@ -46,6 +53,29 @@ public class ArcheryDiscipline extends Fragment {
         TabHost.TabSpec tab1 = th.newTabSpec("tab1");
         TabHost.TabSpec tab2 = th.newTabSpec("tab2");
         TabHost.TabSpec tab3 = th.newTabSpec("tab3");
+
+        bell = (ImageView)getView().findViewById(R.id.notification);
+        bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Caso en el que la notificación este apagada
+                if(bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_none_black_18dp).getConstantState()){
+                    Toast t = Toast.makeText(view.getContext(),"Notifications On",Toast.LENGTH_SHORT);
+                    t.show();
+                    bell.setImageResource(R.drawable.ic_notifications_black_18dp);
+                    //Esto es para probar
+                    FirebaseMessaging.getInstance().subscribeToTopic("archery-male");
+                }//Caso en el que la notificacion esté encendida
+                else{
+                    if(bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_black_18dp).getConstantState()){
+                        Toast t = Toast.makeText(view.getContext(),"Notifications Off",Toast.LENGTH_SHORT);
+                        t.show();
+                        bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
+                        FirebaseMessaging.getInstance().unsubscribeFromTopic("archery-male");
+                    }
+                }
+            }
+        });
 
         tab1.setIndicator("Events");
         tab1.setContent(R.id.Eventos);
