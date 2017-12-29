@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class MainActivity extends AppCompatActivity
      {
 
@@ -75,6 +77,9 @@ public class MainActivity extends AppCompatActivity
                 email = sharedPreferences.getString("email", "");
             }
         }
+
+        //Esto es para probar
+        FirebaseMessaging.getInstance().subscribeToTopic("atletics");
 
     }
 

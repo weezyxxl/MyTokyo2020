@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "134437133390",
-    "firebase_url": "https://mytokyo2020-ccfcb.firebaseio.com",
-    "project_id": "mytokyo2020-ccfcb",
-    "storage_bucket": "mytokyo2020-ccfcb.appspot.com"
+    "project_number": "256775490058",
+    "firebase_url": "https://mytokyo2020-4a6a0.firebaseio.com",
+    "project_id": "mytokyo2020-4a6a0",
+    "storage_bucket": "mytokyo2020-4a6a0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:134437133390:android:420ff99451deefd3",
+        "mobilesdk_app_id": "1:256775490058:android:420ff99451deefd3",
         "android_client_info": {
           "package_name": "com.dam.upm.mytokyo2020"
         }
       },
       "oauth_client": [
         {
-          "client_id": "134437133390-fnjjs95ri51hs88clpu7k246knbjnhgn.apps.googleusercontent.com",
+          "client_id": "256775490058-jvrm0j1upnujvdj4bohgchn88kc5t9sp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAzQKgxdE42L2frrLWcJp_oVvmLlXPHclU"
+          "current_key": "AIzaSyC05DIFcnevspvk5xPqDM2j15eSPR2f0KE"
         }
       ],
       "services": {
