@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -21,19 +22,34 @@
             android:id="@+id/imageView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
             app:srcCompat="@drawable/ic_archery" />
 
-        <TextView
-            android:id="@+id/disciplinaTitle"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-           android:layout_marginTop="50dp"
-            android:text="Archery"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/disciplinaTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1"
+                android:text="Archery"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/arc_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Click here for more info" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <FrameLayout

@@ -2,7 +2,10 @@ package com.dam.upm.mytokyo2020;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +31,9 @@ public class ArcheryDiscipline extends Fragment {
     Bundle extras;
     TableLayout table;
     ImageView bell;
+    FragmentManager fm;
+    ArcheryDialogFragment adf;
+    TextView arcInfo;
     //final Context context = this;
 
     public View onCreateView(LayoutInflater inflater,
@@ -40,7 +46,19 @@ public class ArcheryDiscipline extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
+        fm = getFragmentManager();
+        adf = new ArcheryDialogFragment();
+
         disciplinaName = (TextView)getView().findViewById(R.id.disciplinaTitle);
+
+        arcInfo = (TextView)getView().findViewById(R.id.arc_info);
+        arcInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adf.show(getActivity().getFragmentManager(),"Archery Info");
+            }
+        });
+
         extras = getActivity().getIntent().getExtras();
         if(extras != null){
             disciplinaName.setText(extras.getString("nombre"));
@@ -128,7 +146,7 @@ public class ArcheryDiscipline extends Fragment {
 
                     }
                 });
-                ev1.setText("Evento 1");
+                ev1.setText("Event 1");
                 ev1.setGravity(Gravity.CENTER);
 
                 TextView dia1 = new TextView(getActivity().getApplicationContext());
@@ -136,12 +154,53 @@ public class ArcheryDiscipline extends Fragment {
                 dia1.setGravity(Gravity.CENTER);
 
                 TextView hora1 = new TextView(getActivity().getApplicationContext());
-                hora1.setText("12:14");
+                hora1.setText("12:00");
                 hora1.setGravity(Gravity.CENTER);
 
                 TextView lugar1 = new TextView(getActivity().getApplicationContext());
-                lugar1.setText("Estadio Olimpico");
+                lugar1.setText("Dream Island Archery Field");
                 lugar1.setGravity(Gravity.CENTER);
+                lugar1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+                        // set title
+                        alertDialogBuilder.setTitle("Dream Island Archery Field");
+                        // set dialog message
+                        alertDialogBuilder
+                                .setMessage("How to go")
+                                .setCancelable(false)
+                                .setPositiveButton("Guide me",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        // if this button is clicked, close
+                                        // current activity
+                                        //Primero engañar al gps diciendo que estamos en esta posicion por ejemplo 35.701117, 139.736656
+
+
+                                        //Uri gmmIntentUri = Uri.parse("google.navigation:q=Taronga+Zoo,+Sydney+Australia");
+                                        Uri gmmIntentUri = Uri.parse("google.navigation:q=Sengakuji+Station,+Japón");
+                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                        mapIntent.setPackage("com.google.android.apps.maps");
+                                        startActivity(mapIntent);
+
+                                    }
+                                })
+                                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        // if this button is clicked, just close
+                                        // the dialog box and do nothing
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        // show it
+                        alertDialog.show();
+                    }
+                });
 
                 row1.addView(ev1);
                 row1.addView(dia1);
@@ -150,7 +209,7 @@ public class ArcheryDiscipline extends Fragment {
                 row1.setPadding(0,25,0,0);
 
                 TextView ev2 = new TextView(getActivity().getApplicationContext());
-                ev2.setText("Evento 2");
+                ev2.setText("Event 2");
                 ev2.setGravity(Gravity.CENTER);
 
                 TextView dia2 = new TextView(getActivity().getApplicationContext());
@@ -163,7 +222,7 @@ public class ArcheryDiscipline extends Fragment {
                 hora2.setGravity(Gravity.CENTER);
 
                 TextView lugar2 = new TextView(getActivity().getApplicationContext());
-                lugar2.setText("Estadio de las golondrinas");
+                lugar2.setText("Dream Island Archery Field");
                 lugar2.setGravity(Gravity.CENTER);
 
                 row2.addView(ev2);
