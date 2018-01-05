@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.SyncStatusObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -121,6 +122,7 @@ public class LoginActivity extends  AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    private static final int REQUEST_BUY = 1;
     public static boolean dentro = false;
     private static boolean continuar = false;
     private static boolean alertDialog = false;
@@ -201,13 +203,33 @@ public class LoginActivity extends  AppCompatActivity {
                                     sharedPreferences.edit().putString("username",uName);
                                     sharedPreferences.edit().putString("email",email);
                                     sharedPreferences.edit().commit();
-                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                    dentro = true;
-                                    i.putExtra("username", uName);
-                                    i.putExtra("email",email);
-                                    i.putExtra("dentro", true);
-                                    //progressDialog.cancel();
-                                    startActivity(i);
+
+                                    System.out.println("@@@@@@@@@@@@@@");
+                                    System.out.println("ACTIVIDAD LLAMANTE");
+                                    if(getCallingActivity()!=null) {
+                                        System.out.println(getCallingActivity().getClassName());
+                                        System.out.println(MainActivity.class.getName());
+                                        if (getCallingActivity().getClassName().equals(MainActivity.class.getName())) {
+                                            System.out.println("EN REQUEST_BUY_2");
+                                            //Intent i = getIntent();
+                                            //Intent data = getIntent();
+                                            Intent i = new Intent(getApplicationContext(),BuyActivity.class);
+                                            i.putExtra("disciplina","Archery");
+                                            i.putExtra("username",uName);
+                                            i.putExtra("email",email);
+                                            //setResult(1, i);
+                                            startActivity(i);
+                                            finish();
+                                        } else {
+                                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                            dentro = true;
+                                            i.putExtra("username", uName);
+                                            i.putExtra("email", email);
+                                            i.putExtra("dentro", true);
+                                            //progressDialog.cancel();
+                                            startActivity(i);
+                                        }
+                                    }
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -261,12 +283,27 @@ public class LoginActivity extends  AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("#################");
+        System.out.println("EN LOGIN ACTIVITY onActivityResult");
         if (requestCode == REQUEST_SIGNUP) {
+            System.out.println("En REQUEST_SIGNUP");
             if (resultCode == RESULT_OK) {
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                dentro=true;
-                System.out.println("dentro = " + dentro); //Esto hacerlo con SharedPreferences
-                startActivity(i);
+                System.out.println("EN RESULT_OK");
+                if(this.getCallingActivity().getClassName() == MainActivity.class.getName()) {
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    dentro = true;
+                    System.out.println("dentro = " + dentro); //Esto hacerlo con SharedPreferences
+                    startActivity(i);
+                }
+            }
+        }
+        if(requestCode == REQUEST_BUY){
+            System.out.println("EN REQUEST_BUY");
+            if(this.getCallingActivity().getClassName() == ArcheryDiscipline.class.getName()){
+                System.out.println("EN REQUEST_BUY_2");
+                //Intent i = getIntent();
+                setResult(1,data);
+                finish();
             }
         }
     }

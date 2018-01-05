@@ -3,6 +3,7 @@ package com.dam.upm.mytokyo2020;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -36,6 +37,9 @@ public class ArcheryDiscipline extends Fragment {
     FragmentManager fm;
     ArcheryDialogFragment adf;
     TextView arcInfo;
+    SharedPreferences sharedPreferences;
+    String username;
+    String email;
     //final Context context = this;
 
     public View onCreateView(LayoutInflater inflater,
@@ -47,6 +51,8 @@ public class ArcheryDiscipline extends Fragment {
 
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
+
+        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
 
         fm = getFragmentManager();
         adf = new ArcheryDialogFragment();
@@ -62,9 +68,9 @@ public class ArcheryDiscipline extends Fragment {
         });
 
         extras = getActivity().getIntent().getExtras();
-        if(extras != null){
+        /*if(extras != null){
             disciplinaName.setText(extras.getString("nombre"));
-        }
+        }*/
 
         th = (TabHost)getView().findViewById(R.id.tabHost);
 
@@ -106,6 +112,12 @@ public class ArcheryDiscipline extends Fragment {
         table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
         System.out.println(table.getChildCount());
+        Bundle bundle = this.getArguments();
+        if(bundle!=null){
+            username = bundle.getString("username");
+            email = bundle.getString("email");
+        }
+
         for(int i = 0 ; i < 2 ; i++){
             //Al inicio solo tiene un hijo (una row) que es el encabezado
             if(i>0) {
@@ -129,7 +141,23 @@ public class ArcheryDiscipline extends Fragment {
                                     public void onClick(DialogInterface dialog,int id) {
                                         // if this button is clicked, close
                                         // current activity
-                                        ArcheryDiscipline.this.getActivity().finish();
+                                        //ArcheryDiscipline.this.getActivity().finish();
+                                        //String username = getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE).getString("username","");
+
+                                        if(username!=null && username!="") {
+                                            System.out.println("#####################");
+                                            System.out.println("En ARCHERY");
+                                            System.out.println(username);
+                                            Intent buyTicket = new Intent(getActivity(), BuyActivity.class);
+                                            buyTicket.putExtra("disciplina","archery");
+                                            buyTicket.putExtra("email",sharedPreferences.getString("email",""));
+                                            startActivity(buyTicket);
+                                        }else{
+                                            System.out.println("INICIANDO LOGIN DESDE ARCHERY");
+                                            Intent login = new Intent(getActivity(),LoginActivity.class);
+                                            startActivityForResult(login,1);
+                                        }
+
                                     }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -259,9 +287,37 @@ public class ArcheryDiscipline extends Fragment {
         th.addTab(tab2);
         th.addTab(tab3);
 
-
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("EN onActivityResult ARCHERYDISCIPLINE");
+        if(requestCode == 1){
+            System.out.println("EN REQUEST_code");
+            if(resultCode == 1){
+                System.out.println("EN RESULT CODE");
+                sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                username = sharedPreferences.getString("username","");
+
+                Intent buyTicket = new Intent(getActivity(), BuyActivity.class);
+                buyTicket.putExtra("username",username);
+                buyTicket.putExtra("email",email);
+                //buyTicket.putExtra("disciplina","archery");
+                startActivity(buyTicket);
+            }
+        }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("#################");
+        System.out.println("EN ON RESUME DE ARCHERY DISCIPLINE");
+        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username","");
+        System.out.println("Nombre = > " + username);
+    }
+}
 
 

@@ -175,6 +175,14 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.sports:
+                if((getIntent().getBooleanExtra("dentro",false))==true){
+                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("username",username);
+                    sharedPreferences.edit().putString("email",email);
+                    sharedPreferences.edit().commit();
+                    System.out.println("##################");
+                    System.out.println("$$$$$$$$");
+                }
                 fragmentoGenerico = new Fragmento_Sports();
 
                 break;
@@ -233,7 +241,8 @@ public class MainActivity extends AppCompatActivity
         setTitle(itemDrawer.getTitle());
     }
 
-    @Override
+
+         @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu);
