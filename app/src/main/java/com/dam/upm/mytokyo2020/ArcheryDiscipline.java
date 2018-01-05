@@ -3,6 +3,8 @@ package com.dam.upm.mytokyo2020;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -176,13 +178,27 @@ public class ArcheryDiscipline extends Fragment {
                                         // if this button is clicked, close
                                         // current activity
                                         //Primero engañar al gps diciendo que estamos en esta posicion por ejemplo 35.701117, 139.736656
-
-
-                                        //Uri gmmIntentUri = Uri.parse("google.navigation:q=Taronga+Zoo,+Sydney+Australia");
-                                        Uri gmmIntentUri = Uri.parse("google.navigation:q=Sengakuji+Station,+Japón");
-                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                                        mapIntent.setPackage("com.google.android.apps.maps");
-                                        startActivity(mapIntent);
+                                        //Comprobar si está instalada o no la aplicacion de Gooogle Maps
+                                        String packageName = "com.google.android.apps.maps";
+                                        int flag = 0;
+                                        ApplicationInfo appInfo = null;
+                                        try {
+                                            appInfo = getActivity().getPackageManager().getApplicationInfo(packageName,flag);
+                                        } catch (PackageManager.NameNotFoundException e) {
+                                            //e.printStackTrace();
+                                        }
+                                        if(appInfo!=null) {
+                                            boolean isAppDisabled = appInfo.enabled;
+                                            //Uri gmmIntentUri = Uri.parse("google.navigation:q=Taronga+Zoo,+Sydney+Australia");
+                                            Uri gmmIntentUri = Uri.parse("google.navigation:q=35.64825,139.83071");
+                                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                            mapIntent.setPackage("com.google.android.apps.maps");
+                                            if(mapIntent.resolveActivity(getActivity().getPackageManager())!=null) {
+                                                startActivity(mapIntent);
+                                            }
+                                        }else{
+                                            //Iniciar navegador web
+                                        }
 
                                     }
                                 })
