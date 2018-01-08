@@ -11,9 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class BuyActivity extends AppCompatActivity {
 
@@ -23,6 +29,7 @@ public class BuyActivity extends AppCompatActivity {
     EditText date;
     EditText price;
     EditText cardNumber;
+    String email;
 
     private static boolean validateCreditCardNumber(String str) {
 
@@ -54,11 +61,57 @@ public class BuyActivity extends AppCompatActivity {
         return result;
     }
 
-    private class BuyTicket extends AsyncTask<URL,Integer,JSONObject>{
+    private class BuyTicket extends AsyncTask<String,Integer,JSONObject>{
+
+        private boolean comprado = false;
 
         @Override
-        protected JSONObject doInBackground(URL... urls) {
-            return null;
+        protected JSONObject doInBackground(String... params) {
+            try {
+                URL url = new URL(ServerInfo.SERVER+"BuyTicket?email="+params[0]+"&idEvento="+params[1]);
+                URLConnection connection = url.openConnection();
+                connection.setDoOutput(false);
+                connection.setDoInput(true);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String response = br.readLine();
+                String msg = "";
+                String tipo = "";
+                while(response!=null){
+                    JSONObject json = new JSONObject(response);
+                    msg = json.getString("msg");
+                    tipo = json.getString("tipo");
+                    response = br.readLine();
+                }
+                if(msg != ""){
+                    if(msg.equals("ok")){
+                        comprado = true;
+                    }
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JSONObject jRespuesta = new JSONObject();
+            try {
+                if(comprado){
+                    jRespuesta.put("res","ok");
+                }else{
+                    jRespuesta.put("res","fail");
+                }}
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return jRespuesta;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
         }
     }
 
@@ -73,6 +126,7 @@ public class BuyActivity extends AppCompatActivity {
         date = (EditText)findViewById(R.id.date);
         price = (EditText)findViewById(R.id.price);
         cardNumber = (EditText)findViewById(R.id.cardNumber);
+        email = sharedPreferences.getString("email","");
 
         realizarPago.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,13 +134,13 @@ public class BuyActivity extends AppCompatActivity {
                 if(date.getText()!=null){
                     if(price.getText()!=null){
                         if(cardNumber.getText()!=null){
-                           boolean res = validateCreditCardNumber(cardNumber.getText().toString());
-                           if(res){
-
-                           }else{
-                               Toast t = Toast.makeText(getApplicationContext(),"No valid format card",Toast.LENGTH_LONG);
-                               t.show();
-                           }
+                            boolean res = validateCreditCardNumber(cardNumber.getText().toString());
+                            if(res){
+                                new BuyTicket().execute();
+                            }else{
+                                Toast t = Toast.makeText(getApplicationContext(),"No valid format card",Toast.LENGTH_LONG);
+                                t.show();
+                            }
                         }else{
                             Toast t = Toast.makeText(getApplicationContext(),"No card",Toast.LENGTH_LONG);
                             t.show();
