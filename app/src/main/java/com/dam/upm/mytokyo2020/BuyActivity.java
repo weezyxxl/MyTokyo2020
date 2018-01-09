@@ -1,9 +1,11 @@
 package com.dam.upm.mytokyo2020;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -64,6 +66,8 @@ public class BuyActivity extends AppCompatActivity {
     private class BuyTicket extends AsyncTask<String,Integer,JSONObject>{
 
         private boolean comprado = false;
+        private String msg = "";
+        private String tipo = "";
 
         @Override
         protected JSONObject doInBackground(String... params) {
@@ -75,8 +79,6 @@ public class BuyActivity extends AppCompatActivity {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String response = br.readLine();
-                String msg = "";
-                String tipo = "";
                 while(response!=null){
                     JSONObject json = new JSONObject(response);
                     msg = json.getString("msg");
@@ -100,18 +102,98 @@ public class BuyActivity extends AppCompatActivity {
                 if(comprado){
                     jRespuesta.put("res","ok");
                 }else{
-                    jRespuesta.put("res","fail");
+                    switch (tipo){
+                        case "nobought":
+                            jRespuesta.put("res","nobought");
+                            break;
+                        case "yetbought":
+                            jRespuesta.put("res","yetbought");
+                            break;
+                        case "noEvent":
+                            jRespuesta.put("res","noEvent");
+                            break;
+                        default:
+                            jRespuesta.put("res","error");
+                            break;
+                    }
                 }}
             catch (JSONException e) {
                 e.printStackTrace();
             }
-
             return jRespuesta;
         }
 
         @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
+        protected void onPostExecute(JSONObject result) {
+            if(result!=null){
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                try {
+                    String resS = result.getString("res");
+                    if(resS.equals("ok")){
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("Your purchase has been made correctly.\nAn email has been sent to you.\nCheck your email account for details.");
+                        //alertDialogBuilder.setMessage("An email has been sent.");
+                        //alertDialogBuilder.setMessage("Check your email account for details.");
+                    }if(resS.equals("nobought")){
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("You have already purchase this event.\nIf you think you haven't already bought this event please contact\ndam2017g3@gmail.com for support.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                    }if(resS.equals("yetbought")){
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("You have already purchase this event.\nIf you think you haven't already bought this event please contact\ndam2017g3@gmail.com for support.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                    }if(resS.equals("noEvent")){
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("There is no event with that name.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                    }if(resS.equals("error")){
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("Internal Server Error\nPlease contact dam2017g3@gmail.com for support.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                    }else{
+                        alertDialogBuilder.setTitle("Purchase Result");
+                        alertDialogBuilder.setMessage("App Error\nPlease contact dam2017g3@gmail.com for support.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                    }
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                Toast t = Toast.makeText(getApplicationContext(),"Fallo JSONObject",Toast.LENGTH_LONG);
+                t.show();
+            }
         }
     }
 
@@ -136,7 +218,7 @@ public class BuyActivity extends AppCompatActivity {
                         if(cardNumber.getText()!=null){
                             boolean res = validateCreditCardNumber(cardNumber.getText().toString());
                             if(res){
-                                new BuyTicket().execute();
+                                new BuyTicket().execute(email,"1");
                             }else{
                                 Toast t = Toast.makeText(getApplicationContext(),"No valid format card",Toast.LENGTH_LONG);
                                 t.show();
