@@ -229,6 +229,14 @@ public class LoginActivity extends  AppCompatActivity {
                                             //progressDialog.cancel();
                                             startActivity(i);
                                         }
+                                    }else {
+                                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                        dentro = true;
+                                        i.putExtra("username", uName);
+                                        i.putExtra("email", email);
+                                        i.putExtra("dentro", true);
+                                        //progressDialog.cancel();
+                                        startActivity(i);
                                     }
                                 }
                             } catch (InterruptedException e) {

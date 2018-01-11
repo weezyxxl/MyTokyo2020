@@ -30,6 +30,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.ExecutionException;
 
@@ -39,6 +40,7 @@ public class ProfileActivity extends Fragment {
     SharedPreferences sharedPreferences;
     JSONObject [] eventos;
     JSONObject [] disciplinas;
+    Double [] precios;
     String email;
     String username;
     TextView tvNombre;
@@ -88,14 +90,19 @@ public class ProfileActivity extends Fragment {
                     System.out.println("Hay eventos");
                     eventos = new JSONObject[eventosUsuario.length()];
                     disciplinas = new JSONObject[eventosUsuario.length()];
+                    precios = new Double[eventosUsuario.length()];
                     int i = 0;
                     while (!eventosUsuario.isNull(i)) {
                         JSONObject eventoAux = eventosUsuario.getJSONObject(i);
                         JSONObject evento = eventoAux.getJSONObject("ev");
+                        JSONObject uCE =  eventoAux.getJSONObject("uCE");
+                        System.out.println(uCE.toString());
+                        Double precio = (Double)uCE.get("precio");
                         Integer idEvento = evento.getInt("idEvento");
                         JSONObject disciplina = (JSONObject) evento.get("disciplina");
                         eventos[i] = evento;
                         disciplinas[i] = disciplina;
+                        precios[i] = precio;
                         i++;
                     }
                     TextView puntos = getView().findViewById(R.id.puntos);
@@ -140,21 +147,15 @@ public class ProfileActivity extends Fragment {
                                             SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
                                             String fechaString = fecha.format(eventos[j].get("fecha"));
                                             String horaString = hora.format(eventos[j].get("hora"));
+                                            Double precioAux = precios[j];
+                                            DecimalFormat df = new DecimalFormat("#.##");
                                             alertDialogBuilder
-                                                    .setMessage(eventos[j].getString("tipo")+"\n"+fechaString + "\n" + horaString)
+                                                    .setMessage("Prueba\n\t" + "> "+ eventos[j].getString("tipo")+"\n"+ "Fecha\n\t" + "> " + fechaString + "\n" + "Hora\n\t" + "> "+ horaString + "\n" + "Precio Pagado\n\t"+ "> " + df.format(precioAux) + " €\n")
                                                     .setCancelable(false)
-                                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            // if this button is clicked, close
-                                                            // current activity
-                                                            ProfileActivity.this.getActivity().finish();
-                                                        }
-                                                    })
-                                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            // if this button is clicked, just close
-                                                            // the dialog box and do nothing
-                                                            dialog.cancel();
+                                                    .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                          dialogInterface.dismiss();
                                                         }
                                                     });
                                         } catch (JSONException e) {

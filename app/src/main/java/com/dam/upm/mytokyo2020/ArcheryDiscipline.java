@@ -80,28 +80,37 @@ public class ArcheryDiscipline extends Fragment {
         TabHost.TabSpec tab2 = th.newTabSpec("tab2");
         TabHost.TabSpec tab3 = th.newTabSpec("tab3");
 
-        bell = (ImageView)getView().findViewById(R.id.notification);
-        bell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Caso en el que la notificación este apagada
-                if(bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_none_black_18dp).getConstantState()){
-                    Toast t = Toast.makeText(view.getContext(),"Notifications On",Toast.LENGTH_SHORT);
-                    t.show();
-                    bell.setImageResource(R.drawable.ic_notifications_black_18dp);
-                    //Esto es para probar
-                    FirebaseMessaging.getInstance().subscribeToTopic("archery-male");
-                }//Caso en el que la notificacion esté encendida
-                else{
-                    if(bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_black_18dp).getConstantState()){
-                        Toast t = Toast.makeText(view.getContext(),"Notifications Off",Toast.LENGTH_SHORT);
+        Bundle bundle = this.getArguments();
+        if(bundle!=null){
+            username = bundle.getString("username");
+            email = bundle.getString("email");
+        }
+        bell = (ImageView) getView().findViewById(R.id.notification);
+        if(username!=null && email !=null) {
+            bell.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Caso en el que la notificación este apagada
+                    if (bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_none_black_18dp).getConstantState()) {
+                        Toast t = Toast.makeText(view.getContext(), "Notifications On", Toast.LENGTH_SHORT);
                         t.show();
-                        bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
-                        FirebaseMessaging.getInstance().unsubscribeFromTopic("archery-male");
+                        bell.setImageResource(R.drawable.ic_notifications_black_18dp);
+                        //Esto es para probar
+                        FirebaseMessaging.getInstance().subscribeToTopic("archery-male");
+                    }//Caso en el que la notificacion esté encendida
+                    else {
+                        if (bell.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_notifications_black_18dp).getConstantState()) {
+                            Toast t = Toast.makeText(view.getContext(), "Notifications Off", Toast.LENGTH_SHORT);
+                            t.show();
+                            bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
+                            FirebaseMessaging.getInstance().unsubscribeFromTopic("archery-male");
+                        }
                     }
                 }
-            }
-        });
+            });
+        }else{
+            bell.setVisibility(View.GONE);
+        }
 
         tab1.setIndicator("Events");
         tab1.setContent(R.id.Eventos);
@@ -112,11 +121,7 @@ public class ArcheryDiscipline extends Fragment {
         table = getView().findViewById(R.id.table);
         System.out.println("Numero de hijos de la tabla");
         System.out.println(table.getChildCount());
-        Bundle bundle = this.getArguments();
-        if(bundle!=null){
-            username = bundle.getString("username");
-            email = bundle.getString("email");
-        }
+
 
         for(int i = 0 ; i < 2 ; i++){
             //Al inicio solo tiene un hijo (una row) que es el encabezado
@@ -226,6 +231,8 @@ public class ArcheryDiscipline extends Fragment {
                                             }
                                         }else{
                                             //Iniciar navegador web
+                                            Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse("http://maps.google.co.in/maps?q=35.64825,139.83071"));
+                                            startActivity(i);
                                         }
 
                                     }
@@ -314,7 +321,8 @@ public class ArcheryDiscipline extends Fragment {
         super.onResume();
         System.out.println("#################");
         System.out.println("EN ON RESUME DE ARCHERY DISCIPLINE");
-        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
         System.out.println("Nombre = > " + username);
     }
