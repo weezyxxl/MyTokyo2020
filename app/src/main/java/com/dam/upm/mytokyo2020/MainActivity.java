@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
             seleccionarItem(navigationView.getMenu().getItem(0));
         }
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
         if(sharedPreferences!=null){
             if(sharedPreferences.getString("username","")!=null) {
                 username = sharedPreferences.getString("username", "");
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                      navigationView.getMenu().removeItem(MENU_LOGOUT);
                  }else {
                      System.out.println("HAY USUARIO");
-                     sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                     sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                      sharedPreferences.edit().putString("username",username);
                      sharedPreferences.edit().putString("email",aux.getStringExtra("email"));
                      sharedPreferences.edit().commit();
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                 // Fragmento para la sección Cuenta
                 if((getIntent().getBooleanExtra("dentro",false))==true){
                     fragmentoGenerico = new ProfileActivity();
-                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                    sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                     sharedPreferences.edit().putString("username",username);
                     sharedPreferences.edit().putString("email",email);
                     sharedPreferences.edit().commit();
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.sports:
                 if((getIntent().getBooleanExtra("dentro",false))==true){
-                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                    sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                     sharedPreferences.edit().putString("username",username);
                     sharedPreferences.edit().putString("email",email);
                     sharedPreferences.edit().commit();
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity
     }
 
          private void doLogout() {
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
