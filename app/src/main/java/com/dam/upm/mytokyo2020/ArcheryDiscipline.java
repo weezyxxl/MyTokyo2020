@@ -304,7 +304,8 @@ public class ArcheryDiscipline extends Fragment {
             System.out.println("EN REQUEST_code");
             if(resultCode == 1){
                 System.out.println("EN RESULT CODE");
-                sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                 username = sharedPreferences.getString("username","");
 
                 Intent buyTicket = new Intent(getActivity(), BuyActivity.class);

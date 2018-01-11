@@ -158,7 +158,7 @@ public class LoginActivity extends  AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
-        sharedPreferences = getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
 
     }
 
