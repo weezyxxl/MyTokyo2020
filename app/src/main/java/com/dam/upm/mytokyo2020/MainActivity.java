@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     SharedPreferences sharedPreferences;
     String username;
     String email;
-    private static final int MENU_LOGOUT = Menu.FIRST + 6;
+    private static final int MENU_LOGOUT = Menu.FIRST + 7;
     private NavigationView navigationView;
     private static boolean logOutMarca = false;
     private String hola = "hola";
@@ -200,6 +200,14 @@ public class MainActivity extends AppCompatActivity
 
                 this.startActivity(intent);
                 break;
+
+            case R.id.tickets:
+                fragmentoGenerico = new Traductor();
+                break;
+
+            case R.id.tokyo:
+            fragmentoGenerico = new Fragmento_Tokyo();
+            break;
 
             case MENU_LOGOUT:
                 doLogout();

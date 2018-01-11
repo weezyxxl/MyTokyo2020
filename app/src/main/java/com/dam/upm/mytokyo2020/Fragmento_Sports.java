@@ -1,18 +1,16 @@
 package com.dam.upm.mytokyo2020;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,32 @@ public class Fragmento_Sports extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragmento__sports, container, false);
+        View view = inflater.inflate(R.layout.spinner_sports, container, false);
+
+        SearchableSpinner spinner =(SearchableSpinner) view.findViewById(R.id.spinner);
+
+        spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                        Object item = parent.getItemAtPosition(pos);
+                        System.out.println(item.toString());     //prints the text in spinner item.
+
+                        if(item.equals("Archery")){
+                            Fragment nuevoFragmento = new ArcheryDiscipline();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.app_bar_main, nuevoFragmento);
+                            transaction.addToBackStack(null);
+
+                            // Commit a la transacción
+                            transaction.commit();
+                        }
+
+
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
 
         data.add(new Sport(0,"Archery",
                 R.drawable.arqueria));
@@ -37,7 +60,7 @@ public class Fragmento_Sports extends Fragment {
                 R.drawable.atletismo));
 
 
-        reciclador2 = (RecyclerView) view.findViewById(R.id.reciclador2);
+       /* reciclador2 = (RecyclerView) view.findViewById(R.id.reciclador2);
         layoutManager2 = new LinearLayoutManager(getActivity());
         reciclador2.setLayoutManager(layoutManager2);
 
@@ -60,7 +83,7 @@ public class Fragmento_Sports extends Fragment {
 
             }
         });
-        reciclador2.setAdapter(adaptador);
+        reciclador2.setAdapter(adaptador);*/
 
         return view;
     }

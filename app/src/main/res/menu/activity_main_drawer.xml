@@ -34,6 +34,11 @@
             android:icon="@drawable/tokyotower_1f5fc"
             android:title="Visit Tokyo" />
 
+        <item
+            android:id="@+id/tickets"
+            android:icon="@drawable/traductor"
+            android:title="Translator" />
+
     </group>
 
 
