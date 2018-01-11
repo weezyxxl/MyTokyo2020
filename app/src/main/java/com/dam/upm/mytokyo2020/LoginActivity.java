@@ -86,7 +86,7 @@ public class LoginActivity extends  AppCompatActivity {
         }
     }
 
-    private class GetUsuario extends AsyncTask<String,Integer,JSONObject>{
+    private static class GetUsuario extends AsyncTask<String,Integer,JSONObject>{
         @Override
         protected JSONObject doInBackground(String... params) {
             try {
@@ -158,8 +158,8 @@ public class LoginActivity extends  AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
-        sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-
+        //sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
     }
 
     public void login() {
@@ -199,7 +199,8 @@ public class LoginActivity extends  AppCompatActivity {
                                     String uName = result2.getString("username");
                                     System.out.println("Username => " + uName);
                                     System.out.println("Email => " + email);
-                                    sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                                    //sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                                    sharedPreferences = getPreferences(Context.MODE_PRIVATE);
                                     sharedPreferences.edit().putString("username",uName);
                                     sharedPreferences.edit().putString("email",email);
                                     sharedPreferences.edit().commit();

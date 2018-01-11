@@ -268,8 +268,9 @@ public class MainActivity extends AppCompatActivity
     }
 
          private void doLogout() {
-            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            //SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+             SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
             finish();

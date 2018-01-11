@@ -7,17 +7,15 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -25,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.io.InputStream;
 
 public class ArcheryDiscipline extends Fragment {
     TabHost th;
@@ -52,8 +48,9 @@ public class ArcheryDiscipline extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
 
+        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         fm = getFragmentManager();
         adf = new ArcheryDialogFragment();
 
@@ -149,7 +146,7 @@ public class ArcheryDiscipline extends Fragment {
                                         //ArcheryDiscipline.this.getActivity().finish();
                                         //String username = getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE).getString("username","");
 
-                                        if(username!=null && username!="") {
+                                        if(username!=null && !username.equals("")) {
                                             System.out.println("#####################");
                                             System.out.println("En ARCHERY");
                                             System.out.println(username);
@@ -304,8 +301,8 @@ public class ArcheryDiscipline extends Fragment {
             System.out.println("EN REQUEST_code");
             if(resultCode == 1){
                 System.out.println("EN RESULT CODE");
-                sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-                //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                //sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+                sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                 username = sharedPreferences.getString("username","");
 
                 Intent buyTicket = new Intent(getActivity(), BuyActivity.class);
@@ -322,8 +319,8 @@ public class ArcheryDiscipline extends Fragment {
         super.onResume();
         System.out.println("#################");
         System.out.println("EN ON RESUME DE ARCHERY DISCIPLINE");
-        sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-        //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        //sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
         System.out.println("Nombre = > " + username);
     }

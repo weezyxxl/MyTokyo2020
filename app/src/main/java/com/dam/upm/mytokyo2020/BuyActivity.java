@@ -203,8 +203,8 @@ public class BuyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
         //sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-
+        //sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         realizarPago = (Button)findViewById(R.id.pagar);
         date = (EditText)findViewById(R.id.date);
         price = (EditText)findViewById(R.id.price);
