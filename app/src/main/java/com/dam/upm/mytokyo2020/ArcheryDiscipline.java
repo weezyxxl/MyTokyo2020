@@ -34,6 +34,7 @@ public class ArcheryDiscipline extends Fragment {
     ArcheryDialogFragment adf;
     TextView arcInfo;
     SharedPreferences sharedPreferences;
+    SharedPreferences shNotificaciones;
     String username;
     String email;
     Context context;
@@ -86,6 +87,15 @@ public class ArcheryDiscipline extends Fragment {
         email = sharedPreferences.getString("email","");
         bell = (ImageView) getView().findViewById(R.id.notification);
         if(username!=null && email !=null && !username.equals("") && !email.equals("")) {
+
+            Context context = getActivity().getApplicationContext();
+            sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
+            boolean estado = sharedPreferences.getBoolean("notificaciones",false);
+            if(estado){
+                bell.setImageResource(R.drawable.ic_notifications_black_18dp);
+            }else{
+                bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
+            }
             bell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -94,6 +104,11 @@ public class ArcheryDiscipline extends Fragment {
                         Toast t = Toast.makeText(view.getContext(), "Notifications On", Toast.LENGTH_SHORT);
                         t.show();
                         bell.setImageResource(R.drawable.ic_notifications_black_18dp);
+                        Context context = getActivity().getApplication().getApplicationContext();
+                        sharedPreferences = context.getSharedPreferences("shNotificacion",context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("notificaciones",true);
+                        editor.commit();
                         //Esto es para probar
                         FirebaseMessaging.getInstance().subscribeToTopic("archery-male");
                     }//Caso en el que la notificacion esté encendida
@@ -102,6 +117,11 @@ public class ArcheryDiscipline extends Fragment {
                             Toast t = Toast.makeText(view.getContext(), "Notifications Off", Toast.LENGTH_SHORT);
                             t.show();
                             bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
+                            Context context = getActivity().getApplication().getApplicationContext();
+                            sharedPreferences = context.getSharedPreferences("shNotificacion",context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("notificaciones",false);
+                            editor.commit();
                             FirebaseMessaging.getInstance().unsubscribeFromTopic("archery-male");
                         }
                     }
@@ -325,9 +345,18 @@ public class ArcheryDiscipline extends Fragment {
         System.out.println("EN ON RESUME DE ARCHERY DISCIPLINE");
         Context context = this.getActivity().getApplicationContext();
         sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
+        shNotificaciones = context.getSharedPreferences("shNotificacion",context.MODE_PRIVATE);
         //sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
         System.out.println("Nombre = > " + username);
+        bell = (ImageView) getView().findViewById(R.id.notification);
+        boolean estado = shNotificaciones.getBoolean("notificaciones",false);
+        System.out.println("ESTADO " + estado);
+        if(estado){
+            bell.setImageResource(R.drawable.ic_notifications_black_18dp);
+        }else{
+            bell.setImageResource(R.drawable.ic_notifications_none_black_18dp);
+        }
     }
 }
 

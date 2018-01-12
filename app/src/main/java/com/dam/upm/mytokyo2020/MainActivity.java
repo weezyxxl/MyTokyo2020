@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 
@@ -24,7 +25,7 @@ import android.widget.ViewFlipper;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity
-     {
+{
 
 
     private ViewFlipper flipper;
@@ -38,19 +39,20 @@ public class MainActivity extends AppCompatActivity
     private static boolean logOutMarca = false;
     private String hola = "hola";
     Context context;
+    private int apretado = 0;
 
 
     private void agregarToolbar() {
-             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-             setSupportActionBar(toolbar);
-             final ActionBar ab = getSupportActionBar();
-             if (ab != null) {
-                 // Poner ícono del drawer toggle
-                 ab.setHomeAsUpIndicator(R.drawable.drawer_toggle);
-                 ab.setDisplayHomeAsUpEnabled(true);
-             }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            // Poner ícono del drawer toggle
+            ab.setHomeAsUpIndicator(R.drawable.drawer_toggle);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
-         }
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -84,61 +86,80 @@ public class MainActivity extends AppCompatActivity
             }
         }*/
 
-
+        apretado = 0;
 
     }
 
-         @Override
-         public void onBackPressed() {
+    protected void onDestroy() {
+        System.out.println("On Destroy");
+        if(isFinishing()) {
+            System.out.println("FINISHING");
+            Process.killProcess(Process.myPid());
+            super.onDestroy();
+        }else{
+            System.out.println("NO FINISHING");
+        }
+    }
 
-             int count = getFragmentManager().getBackStackEntryCount();
-             System.out.println("La cuenta del backPressed es " + count);
-             if(count == 0){
-                 //super.onBackPressed();
-             }else{
-                 getFragmentManager().popBackStack();
-             }
-             //super.onBackPressed();
-             //finish();
-         }
+    @Override
+    public void onBackPressed() {
+        int count = getFragmentManager().getBackStackEntryCount();
+        System.out.println("La cuenta del backPressed es " + count);
+        apretado = apretado + 1;
+        switch (apretado){
+            case 1:
+                Toast.makeText(this, "Press again for exit", Toast.LENGTH_LONG).show();
+                break;
+            case 2:
+                System.out.println("Terminando");
+                onDestroy();
+                finish();
+                //Process.killProcess(Process.myPid());
+                //super.onDestroy();
+                break;
+            default:
+                getFragmentManager().popBackStack();
+        }
+    }
 
-         @Override
-         protected void onResume() {
-             super.onResume();
-             System.out.println("#########################");
-             System.out.println("En OnResume()");
-             context = this.getApplicationContext();
-             System.out.println(context.toString());
-             //Intent aux = getIntent();
-             //String username = aux.getStringExtra("username");
-             sharedPreferences = this.getApplicationContext().getSharedPreferences("preferencias",context.MODE_PRIVATE);
-             String username = sharedPreferences.getString("username","");
-             if(username!=null) {
-                 if(username.equals("")){
-                     System.out.println("NO HAY USUARIO-1");
-                     navigationView.getMenu().removeItem(MENU_LOGOUT);
-                 }else {
-                     System.out.println("HAY USUARIO");
+    @Override
+    protected void onResume() {
+        super.onResume();
+        apretado = 0;
+        System.out.println("#########################");
+        System.out.println("En OnResume()");
+        context = this.getApplicationContext();
+        System.out.println(context.toString());
+        //Intent aux = getIntent();
+        //String username = aux.getStringExtra("username");
+        sharedPreferences = this.getApplicationContext().getSharedPreferences("preferencias",context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username","");
+        if(username!=null) {
+            if(username.equals("")){
+                System.out.println("NO HAY USUARIO-1");
+                navigationView.getMenu().removeItem(MENU_LOGOUT);
+            }else {
+                System.out.println("HAY USUARIO");
                      /*sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
                      sharedPreferences.edit().putString("username",username);
                      sharedPreferences.edit().putString("email",aux.getStringExtra("email"));
                      sharedPreferences.edit().commit();*/
-                     System.out.println("#################################");
-                     System.out.println("Navigation vew count = " + navigationView.getChildCount());
-                     System.out.println("Logout Marca " + logOutMarca);
-                     if(navigationView.getChildCount() == 1 && !logOutMarca) {
-                         logOutMarca = true;
-                         navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.logout);
-                         navigationView.getMenu().getItem(0).setCheckable(true);
-                     }
-                     System.out.println("#################################");
-                     System.out.println("Navigation vew count = " + navigationView.getChildCount());
-                 }
-             }else{
-                 System.out.println("NO HAY USUARIO-2");
-                 navigationView.getMenu().removeItem(MENU_LOGOUT);
-             }
-         }
+                System.out.println("#################################");
+                System.out.println("Navigation vew count = " + navigationView.getChildCount());
+                System.out.println("Logout Marca " + logOutMarca);
+                if(navigationView.getChildCount() == 1 && !logOutMarca) {
+                    logOutMarca = true;
+                    navigationView.getMenu().add(0, MENU_LOGOUT, Menu.NONE, "Logout").setIcon(R.drawable.logout);
+                    navigationView.getMenu().getItem(0).setCheckable(true);
+                }
+                System.out.println("#################################");
+                System.out.println("Navigation vew count = " + navigationView.getChildCount());
+            }
+        }else{
+            System.out.println("NO HAY USUARIO-2");
+            navigationView.getMenu().removeItem(MENU_LOGOUT);
+        }
+    }
 
     private void prepararDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -209,7 +230,7 @@ public class MainActivity extends AppCompatActivity
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 } catch (Exception e) {
                     // no Twitter app, revert to browser*/
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/tokyo2020?lang=es"));
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/tokyo2020?lang=es"));
 
                 this.startActivity(intent);
                 break;
@@ -219,8 +240,8 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.tokyo:
-            fragmentoGenerico = new Fragmento_Tokyo();
-            break;
+                fragmentoGenerico = new Fragmento_Tokyo();
+                break;
 
             case MENU_LOGOUT:
                 doLogout();
@@ -263,7 +284,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-         @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         super.onCreateOptionsMenu(menu);
@@ -288,14 +309,14 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-         private void doLogout() {
-            sharedPreferences = getSharedPreferences("preferencias", context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.commit();
-            finish();
-            Intent i = new Intent(this,MainActivity.class);
-            //i.putExtra("username","");
-            startActivity(i);
-         }
+    private void doLogout() {
+        sharedPreferences = getSharedPreferences("preferencias", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        finish();
+        Intent i = new Intent(this,MainActivity.class);
+        //i.putExtra("username","");
+        startActivity(i);
+    }
 }

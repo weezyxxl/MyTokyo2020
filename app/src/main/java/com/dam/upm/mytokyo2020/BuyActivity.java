@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -33,6 +34,9 @@ public class BuyActivity extends AppCompatActivity {
     EditText cardNumber;
     String email;
     Context context;
+    TextView nombreEvento;
+    TextView location;
+    TextView place_number;
 
     private static boolean validateCreditCardNumber(String str) {
 
@@ -207,11 +211,14 @@ public class BuyActivity extends AppCompatActivity {
         //sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         sharedPreferences = context.getSharedPreferences("myPrefs",context.MODE_PRIVATE);
         //sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        nombreEvento = (TextView)findViewById(R.id.nombreEvento);
+        location = (TextView)findViewById(R.id.location);
         realizarPago = (Button)findViewById(R.id.pagar);
         date = (EditText)findViewById(R.id.date);
         price = (EditText)findViewById(R.id.price);
         cardNumber = (EditText)findViewById(R.id.cardNumber);
         email = sharedPreferences.getString("email","");
+        place_number = (TextView)findViewById(R.id.place_number_number);
 
         realizarPago.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,5 +242,8 @@ public class BuyActivity extends AppCompatActivity {
 
             }
         });
+        nombreEvento.setText("Archery - Individual 70m Men");
+        date.setText("07/25/2020");
+
     }
 }
