@@ -32,6 +32,7 @@ public class BuyActivity extends AppCompatActivity {
     EditText price;
     EditText cardNumber;
     String email;
+    Context context;
 
     private static boolean validateCreditCardNumber(String str) {
 
@@ -202,9 +203,10 @@ public class BuyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
+        context = this.getApplicationContext();
         //sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        //sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("myPrefs",context.MODE_PRIVATE);
+        //sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         realizarPago = (Button)findViewById(R.id.pagar);
         date = (EditText)findViewById(R.id.date);
         price = (EditText)findViewById(R.id.price);

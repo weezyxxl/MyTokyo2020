@@ -126,9 +126,9 @@ public class LoginActivity extends  AppCompatActivity {
     public static boolean dentro = false;
     private static boolean continuar = false;
     private static boolean alertDialog = false;
-    private Context context = this;
+    private Context context;
     public static final String myPreferences = "myPrefs";
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
@@ -140,6 +140,8 @@ public class LoginActivity extends  AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+
+        context = this.getApplicationContext();
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -158,8 +160,8 @@ public class LoginActivity extends  AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
-        //sharedPreferences = this.getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+
+
     }
 
     public void login() {
@@ -199,11 +201,19 @@ public class LoginActivity extends  AppCompatActivity {
                                     String uName = result2.getString("username");
                                     System.out.println("Username => " + uName);
                                     System.out.println("Email => " + email);
-                                    //sharedPreferences = getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-                                    sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-                                    sharedPreferences.edit().putString("username",uName);
+                                    Context cAux = getApplicationContext();
+                                    sharedPreferences = getSharedPreferences("preferencias",cAux.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("username",uName);
+                                    editor.putString("email",email);
+                                    if(editor.commit()){
+                                        System.out.print("€€€€€€€€");
+                                    }else{
+                                        System.out.println("NOOOOOOOOOOOO");
+                                    }
+                                    /*sharedPreferences.edit().putString("username",uName);
                                     sharedPreferences.edit().putString("email",email);
-                                    sharedPreferences.edit().commit();
+                                    sharedPreferences.edit().commit();*/
 
                                     System.out.println("@@@@@@@@@@@@@@");
                                     System.out.println("ACTIVIDAD LLAMANTE");
@@ -275,7 +285,7 @@ public class LoginActivity extends  AppCompatActivity {
                                     _loginButton.setEnabled(true);
                                 }
                             });
-                    // create alert dialog
+                    // create alert dialogang
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     // show it
                     alertDialog.show();

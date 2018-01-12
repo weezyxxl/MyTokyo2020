@@ -1,9 +1,12 @@
 package com.dam.upm.mytokyo2020;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Output;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -116,18 +119,18 @@ public class Loading extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("EN ON CREATE DE LOADING");
         super.onCreate(savedInstanceState);
-        //getActionBar().hide();
+
         setContentView(R.layout.activity_loading);
-        //spinner = (ProgressBar)findViewById(R.id.progressBar);
-        //spinner.setVisibility(View.VISIBLE);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 new CheckConnectivity().execute();
                 Intent mainIntent = new Intent(Loading.this,MainActivity.class);
                 startActivity(mainIntent);
-                finish();
+                //finish();
             }
         },WAIT_TIME);
     }

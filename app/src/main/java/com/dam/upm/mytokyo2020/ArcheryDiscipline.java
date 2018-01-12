@@ -36,7 +36,7 @@ public class ArcheryDiscipline extends Fragment {
     SharedPreferences sharedPreferences;
     String username;
     String email;
-    //final Context context = this;
+    Context context;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -48,9 +48,9 @@ public class ArcheryDiscipline extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
 
-        //sharedPreferences = this.getActivity().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
+        context = this.getActivity().getApplicationContext();
 
-        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
         fm = getFragmentManager();
         adf = new ArcheryDialogFragment();
 
@@ -77,13 +77,15 @@ public class ArcheryDiscipline extends Fragment {
         TabHost.TabSpec tab2 = th.newTabSpec("tab2");
         TabHost.TabSpec tab3 = th.newTabSpec("tab3");
 
-        Bundle bundle = this.getArguments();
+        /*Bundle bundle = this.getArguments();
         if(bundle!=null){
             username = bundle.getString("username");
             email = bundle.getString("email");
-        }
+        }*/
+        username = sharedPreferences.getString("username","");
+        email = sharedPreferences.getString("email","");
         bell = (ImageView) getView().findViewById(R.id.notification);
-        if(username!=null && email !=null) {
+        if(username!=null && email !=null && !username.equals("") && !email.equals("")) {
             bell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -152,7 +154,7 @@ public class ArcheryDiscipline extends Fragment {
                                             System.out.println(username);
                                             Intent buyTicket = new Intent(getActivity(), BuyActivity.class);
                                             buyTicket.putExtra("disciplina","archery");
-                                            buyTicket.putExtra("email",sharedPreferences.getString("email",""));
+                                            //buyTicket.putExtra("email",sharedPreferences.getString("email",""));
                                             startActivity(buyTicket);
                                         }else{
                                             System.out.println("INICIANDO LOGIN DESDE ARCHERY");
@@ -301,9 +303,11 @@ public class ArcheryDiscipline extends Fragment {
             System.out.println("EN REQUEST_code");
             if(resultCode == 1){
                 System.out.println("EN RESULT CODE");
-                //sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-                sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                Context context = this.getActivity().getApplicationContext();
+                sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
+                //sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                 username = sharedPreferences.getString("username","");
+                email = sharedPreferences.getString("email","");
 
                 Intent buyTicket = new Intent(getActivity(), BuyActivity.class);
                 buyTicket.putExtra("username",username);
@@ -319,8 +323,9 @@ public class ArcheryDiscipline extends Fragment {
         super.onResume();
         System.out.println("#################");
         System.out.println("EN ON RESUME DE ARCHERY DISCIPLINE");
-        //sharedPreferences = this.getContext().getApplicationContext().getSharedPreferences("myPrefs",Context.MODE_PRIVATE);
-        sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        Context context = this.getActivity().getApplicationContext();
+        sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
+        //sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","");
         System.out.println("Nombre = > " + username);
     }

@@ -44,6 +44,7 @@ public class ProfileActivity extends Fragment {
     String email;
     String username;
     TextView tvNombre;
+    Context context;
     //final Context context = this;
 
     private class GetEvents extends AsyncTask<String,Integer,JSONArray>{
@@ -211,7 +212,7 @@ public class ProfileActivity extends Fragment {
         System.out.println("On Activity Created");
         super.onActivityCreated(state);
 
-        Bundle bundle = this.getArguments();
+        /*Bundle bundle = this.getArguments();
         if(bundle!=null){
             email = bundle.getString("email");
             username = bundle.getString("username");
@@ -219,8 +220,12 @@ public class ProfileActivity extends Fragment {
             System.out.println(username);
             tvNombre = getView().findViewById(R.id.nombreFoto);
             tvNombre.setText(username);
-        }
-        /*sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        }*/
+        //sharedPreferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        //context = this.getActivity();
+        context = this.getActivity().getApplicationContext();
+
+        sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
 
         TextView nombre_perfil = getView().findViewById(R.id.nombreFoto);
         nombre_perfil.setText(sharedPreferences.getString("username", ""));
@@ -228,7 +233,7 @@ public class ProfileActivity extends Fragment {
 
         System.out.println("Despues O");
         System.out.println("Username es: " + sharedPreferences.getString("username",""));
-        System.out.println("Email es : " + email);*/
+        System.out.println("Email es : " + email);
 
 
 
