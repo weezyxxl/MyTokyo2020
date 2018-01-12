@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -77,6 +78,9 @@ public class BuyActivity extends AppCompatActivity {
         @Override
         protected JSONObject doInBackground(String... params) {
             try {
+                System.out.println("Parámetros recibidos: ");
+                System.out.println("Parametro 0: " + params[0]);
+                System.out.println("Parámetro 1: " + params[1]);
                 URL url = new URL(ServerInfo.SERVER+"BuyTicket?email="+params[0]+"&idEvento="+params[1]);
                 URLConnection connection = url.openConnection();
                 connection.setDoOutput(false);
@@ -91,7 +95,9 @@ public class BuyActivity extends AppCompatActivity {
                     response = br.readLine();
                 }
                 if(msg != ""){
-                    if(msg.equals("ok")){
+                    System.out.println("MENSAAAAAAAAAAAAJE");
+                    System.out.println(msg);
+                    if(msg.equals("bought")){
                         comprado = true;
                     }
                 }
@@ -107,7 +113,7 @@ public class BuyActivity extends AppCompatActivity {
                 if(comprado){
                     jRespuesta.put("res","ok");
                 }else{
-                    switch (tipo){
+                    switch (msg){
                         case "nobought":
                             jRespuesta.put("res","nobought");
                             break;
@@ -131,15 +137,28 @@ public class BuyActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject result) {
             if(result!=null){
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+                System.out.println("Respuesta");
+                System.out.println(result.toString());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(BuyActivity.this);
                 try {
                     String resS = result.getString("res");
-                    if(resS.equals("ok")){
+                    System.out.println("Respuesta resS");
+                    System.out.println(resS);
+                    if(resS == "ok"){
                         alertDialogBuilder.setTitle("Purchase Result");
                         alertDialogBuilder.setMessage("Your purchase has been made correctly.\nAn email has been sent to you.\nCheck your email account for details.");
+                        alertDialogBuilder.setCancelable(false);
+                        alertDialogBuilder.setNeutralButton("Done", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                                Intent intent  = new Intent(context,MainActivity.class);
+                                context.startActivity(intent);
+                            }
+                        });
                         //alertDialogBuilder.setMessage("An email has been sent.");
                         //alertDialogBuilder.setMessage("Check your email account for details.");
-                    }if(resS.equals("nobought")){
+                    }else if(resS == "nobought"){
                         alertDialogBuilder.setTitle("Purchase Result");
                         alertDialogBuilder.setMessage("You have already purchase this event.\nIf you think you haven't already bought this event please contact\ndam2017g3@gmail.com for support.");
                         alertDialogBuilder.setCancelable(false);
@@ -149,7 +168,7 @@ public class BuyActivity extends AppCompatActivity {
                                 dialogInterface.cancel();
                             }
                         });
-                    }if(resS.equals("yetbought")){
+                    }else if(resS == "yetbought"){
                         alertDialogBuilder.setTitle("Purchase Result");
                         alertDialogBuilder.setMessage("You have already purchase this event.\nIf you think you haven't already bought this event please contact\ndam2017g3@gmail.com for support.");
                         alertDialogBuilder.setCancelable(false);
@@ -159,7 +178,7 @@ public class BuyActivity extends AppCompatActivity {
                                 dialogInterface.cancel();
                             }
                         });
-                    }if(resS.equals("noEvent")){
+                    }else if(resS == "noEvent"){
                         alertDialogBuilder.setTitle("Purchase Result");
                         alertDialogBuilder.setMessage("There is no event with that name.");
                         alertDialogBuilder.setCancelable(false);
@@ -169,7 +188,7 @@ public class BuyActivity extends AppCompatActivity {
                                 dialogInterface.cancel();
                             }
                         });
-                    }if(resS.equals("error")){
+                    }else if(resS == "error"){
                         alertDialogBuilder.setTitle("Purchase Result");
                         alertDialogBuilder.setMessage("Internal Server Error\nPlease contact dam2017g3@gmail.com for support.");
                         alertDialogBuilder.setCancelable(false);
@@ -209,7 +228,7 @@ public class BuyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buy);
         context = this.getApplicationContext();
         //sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        sharedPreferences = context.getSharedPreferences("myPrefs",context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("preferencias",context.MODE_PRIVATE);
         //sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         nombreEvento = (TextView)findViewById(R.id.nombreEvento);
         location = (TextView)findViewById(R.id.location);
@@ -243,7 +262,11 @@ public class BuyActivity extends AppCompatActivity {
             }
         });
         nombreEvento.setText("Archery - Individual 70m Men");
+        location.setText("Dream Island Archery Field");
         date.setText("07/25/2020");
+        place_number.setText("Entry 12 | Section 1 | Row 23 | Seat 67");
+        price.setText("45 £ (6805,47 ¥)");
+        cardNumber.setText("378282246310005");
 
     }
 }
