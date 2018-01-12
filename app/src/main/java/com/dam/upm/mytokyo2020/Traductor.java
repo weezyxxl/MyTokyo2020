@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +33,9 @@ import javax.net.ssl.HttpsURLConnection;
 public class Traductor extends Fragment implements OnInitListener {
 
     private TextToSpeech tts;
+    private String from ="";
+    private String to ="";
+
 
     public Traductor() {
     }
@@ -61,6 +66,60 @@ public class Traductor extends Fragment implements OnInitListener {
 
         // Get the access token
 // The key got from Azure portal, please see https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account
+        SearchableSpinner spinner =(SearchableSpinner)getView().findViewById(R.id.spinnerOr);
+
+        spinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                        Object item = parent.getItemAtPosition(pos);
+                        System.out.println(item.toString());     //prints the text in spinner item.
+
+                        if (item.equals("English")) {
+                            from = "en";
+                        }
+                        if (item.equals("French")) {
+                             from = "fr";
+                        }
+                        if (item.equals("Japanese")) {
+                             from = "ja";
+                        }
+                        if (item.equals("Spanish")) {
+                             from = "es";
+                        }
+                    }
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+
+                });
+
+        SearchableSpinner spinner2 =(SearchableSpinner)getView().findViewById(R.id.spinner2);
+
+        spinner2.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                        Object item = parent.getItemAtPosition(pos);
+                        System.out.println(item.toString());     //prints the text in spinner item.
+
+                        if (item.equals("English")) {
+                            to = "en";
+                        }
+                        if (item.equals("French")) {
+                            to = "fr";
+                        }
+                        if (item.equals("Japanese")) {
+                            to = "ja";
+                        }
+                        if (item.equals("Spanish")) {
+                            to = "es";
+                        }
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+
+                });
+
 
         ((Button) getView().findViewById(R.id.bTranslate))
                 .setOnClickListener(new View.OnClickListener() {
@@ -86,8 +145,8 @@ public class Traductor extends Fragment implements OnInitListener {
                                     // Using the access token to build the appid for the request url
                                     String appId = URLEncoder.encode("Bearer " + token, "UTF-8");
                                     //String text = URLEncoder.encode("happy birthday", "UTF-8");
-                                    String from = "en";
-                                    String to = "ja";
+                                    //String from = "en";
+                                    //String to = "ja";
                                     String text1 = ((EditText) getView().findViewById(R.id.etUserText))
                                             .getText().toString();
                                     String translatorTextApiUrl = String.format("https://api.microsofttranslator.com/v2/http.svc/Translate?appid=%s&text=%s&from=%s&to=%s", appId, text1, from, to);
@@ -118,7 +177,9 @@ public class Traductor extends Fragment implements OnInitListener {
                     }
                 });
     }
-    public String cleanOUTPUT(String OUTPUT) {
+
+
+                    public String cleanOUTPUT(String OUTPUT) {
         OUTPUT = OUTPUT.replaceAll("<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">","");
         OUTPUT = OUTPUT.replaceAll("</string>", "");
         return OUTPUT;

@@ -95,11 +95,7 @@
                                 android:layout_alignParentTop="true" >
                             </ListView>
 
-
-
                         </RelativeLayout>
-
-
 
                         <LinearLayout
                             android:id="@+id/Visit"
@@ -132,7 +128,7 @@
                                 android:layout_height="match_parent"
                                 mapbox:mapbox_cameraTargetLat="35.689488"
                                 mapbox:mapbox_cameraTargetLng="139.691706"
-                                mapbox:mapbox_styleUrl="mapbox://styles/mapbox/light-v9"
+                                mapbox:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10"
                                 mapbox:mapbox_cameraZoom="11" />
                         </LinearLayout>
 

@@ -145,4 +145,12 @@
     <string name="hora">Time</string>
     <string name="lugar">Place</string>
 
+    <string-array name="Idiomas">
+        <item>English</item>
+    <item>French</item>
+        <item>Japanese</item>
+        <item>Spanish</item>
+
+    </string-array>
+
 </resources>

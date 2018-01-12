@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="2px"
+            android:padding="10dp"
             android:text="Rank"
             android:textColor="#ffffff"
             android:textSize="16sp" />
@@ -70,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:padding="2px"
             android:text="Country"
             android:textColor="#ffffff"
@@ -79,8 +80,7 @@
         <ImageView
             android:id="@+id/ColumnaOro"
             android:layout_gravity="center"
-            android:paddingRight="8dp"
-            android:layout_marginLeft="8dp"
+            android:paddingRight="1dp"
 
             android:text="Oro"
             android:src="@drawable/gold_medal"
@@ -94,23 +94,24 @@
         <ImageView
             android:id="@+id/ColumnaPlata"
 
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
-            android:paddingRight="8dp"
+
+            android:adjustViewBounds="true"
+            android:paddingRight="1dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/silver_medal"
             android:text="Plata"
             android:textColor="#ffffff"
-            android:src="@drawable/silver_medal"
-            android:textSize="16sp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:layout_width="25dp"
-            android:layout_height="25dp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/ColumnaBronce"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:paddingRight="3dp"
+            android:paddingRight="1dp"
 
             android:text="Bronce"
             android:textColor="#ffffff"
@@ -124,7 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="20dp"
             android:padding="2px"
             android:text="Total"
             android:textColor="#ffffff"
@@ -175,8 +176,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             android:text="46"
             android:textSize="12sp" />
@@ -185,12 +186,11 @@
             android:id="@+id/PlataUsa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             android:text="37"
-            android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
-            />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/BronceUsa"
@@ -200,7 +200,7 @@
             android:text="38"
             android:textSize="12sp"
             android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="22dp"
 
             />
 
@@ -211,7 +211,7 @@
             android:gravity="center"
             android:text="121"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -255,8 +255,8 @@
             android:gravity="center"
             android:text="27"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -266,8 +266,8 @@
             android:gravity="center"
             android:text="23"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -277,8 +277,8 @@
             android:gravity="center"
             android:text="17"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
 
@@ -287,7 +287,7 @@
             android:gravity="center"
             android:text="67"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -330,8 +330,8 @@
             android:gravity="center"
             android:text="26"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -341,8 +341,8 @@
             android:gravity="center"
             android:text="18"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -351,8 +351,8 @@
             android:gravity="center"
             android:text="26"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -360,7 +360,7 @@
             android:gravity="center"
             android:text="70"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -403,9 +403,8 @@
             android:gravity="center"
             android:text="19"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
-
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -414,8 +413,8 @@
             android:gravity="center"
             android:text="18"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -424,8 +423,8 @@
             android:gravity="center"
             android:text="19"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -433,7 +432,7 @@
             android:gravity="center"
             android:text="56"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -476,8 +475,8 @@
             android:gravity="center"
             android:text="17"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -487,8 +486,8 @@
             android:gravity="center"
             android:text="10"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -497,8 +496,8 @@
             android:gravity="center"
             android:text="15"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -506,7 +505,7 @@
             android:gravity="center"
             android:text="42"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -549,8 +548,8 @@
             android:gravity="center"
             android:text="12"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -560,8 +559,8 @@
             android:gravity="center"
             android:text="8"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -570,8 +569,8 @@
             android:gravity="center"
             android:text="21"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -579,7 +578,7 @@
             android:gravity="center"
             android:text="41"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -622,8 +621,8 @@
             android:gravity="center"
             android:text="10"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -633,8 +632,8 @@
             android:gravity="center"
             android:text="18"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -643,8 +642,8 @@
             android:gravity="center"
             android:text="14"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -652,7 +651,7 @@
             android:gravity="center"
             android:text="42"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
         <TableRow
@@ -693,8 +692,8 @@
             android:gravity="center"
             android:text="9"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -703,8 +702,8 @@
             android:gravity="center"
             android:text="3"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -713,8 +712,8 @@
             android:gravity="center"
             android:text="9"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -722,7 +721,7 @@
             android:gravity="center"
             android:text="21"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <TableRow
@@ -770,8 +769,8 @@
             android:gravity="center"
             android:text="8"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -782,16 +781,16 @@
             android:gravity="center"
             android:text="12"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
             android:id="@+id/Bronce1"
             android:layout_width="24dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
             android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"
             android:gravity="center"
             android:text="8"
             android:textSize="12sp" />
@@ -803,7 +802,7 @@
             android:gravity="center"
             android:text="28"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     <!--  Nueva Fila -->
@@ -854,8 +853,8 @@
             android:gravity="center"
             android:text="8"
             android:textSize="12sp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="3dp"
 
             />
 
@@ -866,8 +865,8 @@
             android:gravity="center"
             android:text="11"
             android:textSize="12sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
             />
 
         <TextView
@@ -877,8 +876,8 @@
             android:gravity="center"
             android:text="20"
             android:textSize="12sp"
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
 
         <TextView
             android:id="@+id/Total2"
@@ -887,7 +886,7 @@
             android:gravity="center"
             android:text="29"
             android:textSize="12sp"
-            android:layout_marginLeft="45dp"/>
+            android:layout_marginLeft="55dp"/>
     </TableRow>
 
     </TableLayout>
@@ -907,7 +906,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="2px"
+                    android:padding="10dp"
                     android:text="Rank"
                     android:textColor="#ffffff"
                     android:textSize="16sp" />
@@ -924,7 +923,7 @@
 
                 <ImageView
                     android:layout_gravity="center"
-                    android:paddingRight="8dp"
+                    android:paddingRight="1dp"
                     android:layout_marginLeft="8dp"
 
                     android:text="Oro"
@@ -939,7 +938,7 @@
                 <ImageView
 
                     android:layout_gravity="center"
-                    android:paddingRight="8dp"
+                    android:paddingRight="1dp"
                     android:text="Plata"
                     android:textColor="#ffffff"
                     android:src="@drawable/silver_medal"
@@ -953,7 +952,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:paddingRight="3dp"
+                    android:paddingRight="1dp"
 
                     android:text="Bronce"
                     android:textColor="#ffffff"
@@ -966,7 +965,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="2px"
                     android:text="Total"
                     android:textColor="#ffffff"
@@ -1011,8 +1010,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="3dp"
 
                     android:text="5"
                     android:textSize="12sp" />
@@ -1023,8 +1022,8 @@
                     android:gravity="center"
                     android:text="1"
                     android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
                     />
 
                 <TextView
@@ -1033,8 +1032,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"
 
                     />
 
@@ -1044,7 +1043,7 @@
                     android:gravity="center"
                     android:text="6"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1087,8 +1086,8 @@
                     android:gravity="center"
                     android:text="4"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="3dp"
 
                     />
 
@@ -1098,8 +1097,8 @@
                     android:gravity="center"
                     android:text="1"
                     android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
                     />
 
                 <TextView
@@ -1109,8 +1108,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="12sp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
 
@@ -1119,7 +1118,7 @@
                     android:gravity="center"
                     android:text="5"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1162,8 +1161,8 @@
                     android:gravity="center"
                     android:text="4"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="3dp"
 
                     />
 
@@ -1173,8 +1172,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
                     />
 
                 <TextView
@@ -1183,8 +1182,8 @@
                     android:gravity="center"
                     android:text="1"
                     android:textSize="12sp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1192,7 +1191,7 @@
                     android:gravity="center"
                     android:text="5"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1235,8 +1234,8 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="3dp"
 
                     />
 
@@ -1246,8 +1245,8 @@
                     android:gravity="center"
                     android:text="1"
                     android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
                     />
 
                 <TextView
@@ -1256,8 +1255,8 @@
                     android:gravity="center"
                     android:text="0"
                     android:textSize="12sp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1265,7 +1264,7 @@
                     android:gravity="center"
                     android:text="4"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1308,29 +1307,29 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1338,7 +1337,7 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1381,29 +1380,29 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1411,7 +1410,7 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1454,29 +1453,29 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1484,7 +1483,7 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1525,28 +1524,28 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1554,7 +1553,7 @@
                     android:gravity="center"
                     android:text="3"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <TableRow
@@ -1598,8 +1597,8 @@
                     android:gravity="center"
                     android:text="2"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="3dp"
 
                     />
 
@@ -1609,15 +1608,15 @@
                     android:gravity="center"
                     android:text="2"
                     android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
                     />
 
                 <TextView
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"
                     android:gravity="center"
                     android:text="0"
                     android:textSize="12sp" />
@@ -1628,7 +1627,7 @@
                     android:gravity="center"
                     android:text="4"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
             <!--  Nueva Fila -->
@@ -1673,29 +1672,29 @@
                     android:gravity="center"
                     android:text="2"
                     android:textSize="12sp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginRight="8dp"
-
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textSize="12sp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="3dp"
-                    android:layout_marginLeft="16dp"/>
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1703,7 +1702,7 @@
                     android:gravity="center"
                     android:text="4"
                     android:textSize="12sp"
-                    android:layout_marginLeft="45dp"/>
+                    android:layout_marginLeft="55dp"/>
             </TableRow>
 
 

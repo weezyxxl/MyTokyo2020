@@ -30,18 +30,20 @@ public class Fragmento_Noticias extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragmento_prueba, container, false);
 
-        data.add(new Noticia(0,"26 NOV 2017", "SOFTBALL IS ‘BACK WHERE IT BELONGS’ ACCORDING TO CANADA COACH MARK SMITH",
+        data.add(new Noticia(0,"13 DIC 2017", "TOKYO 2020 TO ORGANISE INNOVATIVE AND ENGAGING GAMES",
+                R.drawable.foto_noticia10));
+
+        data.add(new Noticia(1,"26 NOV 2017", "SOFTBALL IS ‘BACK WHERE IT BELONGS’ ACCORDING TO CANADA COACH MARK SMITH",
                 R.drawable.foto_noticia1));
-        data.add(new Noticia(1,"25 NOV 2017", "FANNING TARGETS OLYMPIC GAMES WITH SURFING READY TO TEAR UP TOKYO",
+        data.add(new Noticia(2,"25 NOV 2017", "FANNING TARGETS OLYMPIC GAMES WITH SURFING READY TO TEAR UP TOKYO",
                 R.drawable.foto_noticia2));
-        data.add(new Noticia(2,"24 NOV 2017", "AFRICA’S LONE MLB STAR SWINGING TO INSPIRE WHOLE CONTINENT IN TOKYO",
+        data.add(new Noticia(3,"24 NOV 2017", "AFRICA’S LONE MLB STAR SWINGING TO INSPIRE WHOLE CONTINENT IN TOKYO",
                 R.drawable.foto_noticia3));
-        data.add(new Noticia(3,"24 NOV 2017", "SOFTBALL’S GREATEST OLYMPIAN BERG TARGETS GOLD FOR THE NEXT GENERATION",
+        data.add(new Noticia(4,"24 NOV 2017", "SOFTBALL’S GREATEST OLYMPIAN BERG TARGETS GOLD FOR THE NEXT GENERATION",
                 R.drawable.foto_noticia4));
-       data.add(new Noticia(4,"23 NOV 2017", "YOG STAR JADE JONES AIMING TO BECOME TAEKWONDO’S FIRST TRIPLE OLYMPIC CHAMPION",
+       data.add(new Noticia(5,"23 NOV 2017", "YOG STAR JADE JONES AIMING TO BECOME TAEKWONDO’S FIRST TRIPLE OLYMPIC CHAMPION",
                 R.drawable.foto_noticia5));
-        data.add(new Noticia(5,"22 NOV 2017", "TEENAGE BMX FREESTYLER ROBERTS READY TO TAKE OLYMPIC STAGE BY STORM",
-                R.drawable.foto_noticia6));
+
 
         reciclador = (RecyclerView) view.findViewById(R.id.reciclador);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -53,31 +55,38 @@ public class Fragmento_Noticias extends Fragment {
 
             //long postId = data.get(position).getIdDrawable();
             int postId=data.get(position).getId();
+
             if(postId==0) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/tokyo-2020-to-organise-innovative-and-engaging-games"));
+                startActivity(intent);
+            }
+
+
+            if(postId==1) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/softball-is-back-where-it-belongs-according-to-canada-coach-mark-smith"));
                 startActivity(intent);
             }
-            if(postId==1) {
+            if(postId==2) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/fanning-targets-olympic-games-with-surfing-ready-to-tear-up-tokyo"));
                 startActivity(intent);
             }
-            if(postId==2) {
+            if(postId==3) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/africa-s-lone-mlb-star-swinging-to-inspire-whole-continent-in-tokyo"));
                 startActivity(intent);
             }
-            if(postId==3) {
+            if(postId==4) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/softball-s-greatest-olympian-berg-targets-gold-for-the-next-generation"));
                 startActivity(intent);
             }
-            if(postId==4) {
+            if(postId==5) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/yog-star-jade-jones-aiming-to-become-taekwondo-s-first-triple-olympic-champion"));
                 startActivity(intent);
             }
-            if(postId==5) {
+            if(postId==6) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.olympic.org/news/teenage-bmx-freestyler-roberts-ready-to-take-olympic-stage-by-storm"));
                 startActivity(intent);
             }
-            if(postId==6) {
+            if(postId==7) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.es/"));
                 startActivity(intent);
             }

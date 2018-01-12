@@ -37,17 +37,19 @@ public class Noticia {
     static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
     static {
-        Noticias.add(new Noticia(0,"26 NOV 2017", "SOFTBALL IS ‘BACK WHERE IT BELONGS’ ACCORDING TO CANADA COACH MARK SMITH",
+        Noticias.add(new Noticia(0,"13 DIC 2017", "TOKYO 2020 TO ORGANISE INNOVATIVE AND ENGAGING GAMES",
+                R.drawable.foto_noticia10));
+        Noticias.add(new Noticia(1,"26 NOV 2017", "SOFTBALL IS ‘BACK WHERE IT BELONGS’ ACCORDING TO CANADA COACH MARK SMITH",
                 R.drawable.foto_noticia1));
-        Noticias.add(new Noticia(1,"25 NOV 2017", "FANNING TARGETS OLYMPIC GAMES WITH SURFING READY TO TEAR UP TOKYO",
+        Noticias.add(new Noticia(2,"25 NOV 2017", "FANNING TARGETS OLYMPIC GAMES WITH SURFING READY TO TEAR UP TOKYO",
                 R.drawable.foto_noticia2));
-        Noticias.add(new Noticia(2,"24 NOV 2017", "AFRICA’S LONE MLB STAR SWINGING TO INSPIRE WHOLE CONTINENT IN TOKYO",
+        Noticias.add(new Noticia(3,"24 NOV 2017", "AFRICA’S LONE MLB STAR SWINGING TO INSPIRE WHOLE CONTINENT IN TOKYO",
                 R.drawable.foto_noticia3));
-        Noticias.add(new Noticia(3,"24 NOV 2017", "SOFTBALL’S GREATEST OLYMPIAN BERG TARGETS GOLD FOR THE NEXT GENERATION",
+        Noticias.add(new Noticia(4,"24 NOV 2017", "SOFTBALL’S GREATEST OLYMPIAN BERG TARGETS GOLD FOR THE NEXT GENERATION",
                 R.drawable.foto_noticia4));
-        Noticias.add(new Noticia(4,"23 NOV 2017", "YOG STAR JADE JONES AIMING TO BECOME TAEKWONDO’S FIRST TRIPLE OLYMPIC CHAMPION",
+        Noticias.add(new Noticia(5,"23 NOV 2017", "YOG STAR JADE JONES AIMING TO BECOME TAEKWONDO’S FIRST TRIPLE OLYMPIC CHAMPION",
                 R.drawable.foto_noticia5));
-        Noticias.add(new Noticia(5,"22 NOV 2017", "TEENAGE BMX FREESTYLER ROBERTS READY TO TAKE OLYMPIC STAGE BY STORM",
+        Noticias.add(new Noticia(6,"22 NOV 2017", "TEENAGE BMX FREESTYLER ROBERTS READY TO TAKE OLYMPIC STAGE BY STORM",
                 R.drawable.foto_noticia6));
         /*Noticias.add(new com.dam.upm.mytokyo2020.Noticia(2017-05-23, "AUSTRALIA’S MR BASEBALL HAS SET HIS SIGHTS ON MORE OLYMPIC GLORY",
                 R.drawable.rosca));*/
